@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryBlue">#2563EB</color>
+    <color name="secondaryPurple">#7C3AED</color>
+
+    <color name="background">#F8FAFC</color>
+    <color name="surface">#FFFFFF</color>
+
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+
+    <color name="error">#DC2626</color>
+    <color name="success">#16A34A</color>
+
 </resources>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Campus Connect</string>
     <string name="icon">🎓</string>
+    <string name="icon1">🎓</string>
     <string name="tagline">One App. Everything for Students.</string>
 
     <!-- Onboarding -->
@@ -16,4 +17,35 @@
 
     <string name="onboarding_title_3">Connect with Campus</string>
     <string name="onboarding_desc_3">Share lecture notes, report lost items, explore events, and lodge complaints seamlessly.</string>
+
+    <!-- Login -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="login_subtitle">Sign in to your student account to continue.</string>
+    <string name="email_label">College Email</string>
+    <string name="password_label">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_button">Sign In</string>
+    <string name="no_account_prompt">Don\'t have an account? </string>
+    <string name="register_now">Register</string>
+
+    <!-- Register -->
+    <string name="create_account">Create Account</string>
+    <string name="register_subtitle">Join Campus Connect to access all student services.</string>
+    <string name="full_name_label">Full Name</string>
+    <string name="confirm_password_label">Confirm Password</string>
+    <string name="department_label">Department</string>
+    <string name="semester_label">Semester</string>
+    <string name="roll_number_label">Roll Number</string>
+    <string name="register_button">Register Account</string>
+    <string name="already_have_account_prompt">Already have an account? </string>
+    <string name="sign_in_now">Sign In</string>
+
+    <!-- Validation Errors -->
+    <string name="error_invalid_email">Please enter a valid college email address.</string>
+    <string name="error_short_password">Password must be at least 6 characters long.</string>
+    <string name="error_empty_name">Please enter your full name.</string>
+    <string name="error_empty_department">Please select your department.</string>
+    <string name="error_empty_semester">Please select your semester.</string>
+    <string name="error_empty_roll_number">Please enter your roll number.</string>
+    <string name="error_password_mismatch">Passwords do not match.</string>
 </resources>

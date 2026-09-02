@@ -15,7 +15,7 @@
         android:layout_height="120dp"
         android:background="@drawable/circle_logo"
         android:gravity="center"
-        android:text="@string/icon"
+        android:text="@string/icon1"
         android:textSize="56sp"
         app:layout_constraintBottom_toTopOf="@+id/tvOnboardingTitle"
         app:layout_constraintEnd_toEndOf="parent"

@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         if (prefManager.isFirstRun()) {
             intent = new Intent(SplashActivity.this, OnboardingActivity.class);
         } else {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent = new Intent(SplashActivity.this, com.example.campusconnect.ui.auth.LoginActivity.class);
         }
         startActivity(intent);
         finish();

@@ -145,7 +145,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
     private void completeOnboarding() {
         SharedPrefManager.getInstance(this).setFirstRun(false);
-        Intent intent = new Intent(OnboardingActivity.this, MainActivity.class);
+        Intent intent = new Intent(OnboardingActivity.this, com.example.campusconnect.ui.auth.LoginActivity.class);
         startActivity(intent);
         finish();
     }

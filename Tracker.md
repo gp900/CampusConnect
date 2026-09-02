@@ -8,9 +8,9 @@
 | M01-2 | Design System & Resources | Milestone 1 | **DONE** | `colors.xml`, `strings.xml`, `dimens.xml`, `themes.xml` configured |
 | M02-1 | Splash Screen UI & Logic | Milestone 2 | **DONE** | Routing logic via Handler and SharedPrefManager |
 | M02-2 | Onboarding Flow UI & ViewPager2 | Milestone 2 | **DONE** | ViewPager2, OnboardingAdapter, dot indicators |
-| M03-1 | Login Screen UI | Milestone 3 | **TODO** | Form validation, password visibility toggle |
-| M03-2 | Register Screen UI | Milestone 3 | **TODO** | Academic details dropdowns (Dept, Semester) |
-| M03-3 | Firebase Auth Integration | Milestone 3 | **TODO** | AuthRepository and AuthViewModel |
+| M03-1 | Login Screen UI | Milestone 3 | **DONE** | Form validation, password toggle, error states |
+| M03-2 | Register Screen UI | Milestone 3 | **DONE** | Exposed dropdowns for Dept & Semester, form validation |
+| M03-3 | Firebase Auth Integration | Milestone 3 | **DONE** | AuthRepository, AuthViewModel, Resource state architecture |
 | M04-1 | Main Bottom Navigation | Milestone 4 | **TODO** | 4 main tabs (Home, Academics, Campus, Profile) |
 | M04-2 | Student Dashboard (Home) | Milestone 4 | **TODO** | Next class countdown, stats cards, quick actions |
 | M05-1 | Timetable Module | Milestone 5 | **TODO** | Day filter, class schedule cards |

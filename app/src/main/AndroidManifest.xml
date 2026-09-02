@@ -13,6 +13,14 @@
         android:theme="@style/Theme.CampusConnect">
 
         <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".OnboardingActivity"
             android:exported="false" />
 

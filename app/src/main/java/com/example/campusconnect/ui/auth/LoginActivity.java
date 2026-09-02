@@ -76,19 +76,20 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
         String password = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
 
-        boolean isValid = true;
+        boolean isEmailValid = ValidationUtils.isValidEmail(email);
+        boolean isPasswordValid = ValidationUtils.isValidPassword(password);
 
-        if (!ValidationUtils.isValidEmail(email)) {
+        if (!isEmailValid) {
             tilEmail.setError(getString(R.string.error_invalid_email));
-            isValid = false;
         }
 
-        if (!ValidationUtils.isValidPassword(password)) {
+        if (!isPasswordValid) {
             tilPassword.setError(getString(R.string.error_short_password));
-            isValid = false;
         }
 
-        if (!isValid) return;
+        if (!isEmailValid || !isPasswordValid) {
+            return;
+        }
 
         authViewModel.login(email, password).observe(this, resource -> {
             if (resource == null) return;

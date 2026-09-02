@@ -122,52 +122,41 @@ public class RegisterActivity extends AppCompatActivity {
         String password = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
         String confirmPassword = etConfirmPassword.getText() != null ? etConfirmPassword.getText().toString().trim() : "";
 
-        boolean isValid = true;
+        boolean isNameValid = ValidationUtils.isNonEmpty(fullName);
+        boolean isEmailValid = ValidationUtils.isValidEmail(email);
+        boolean isDeptValid = ValidationUtils.isNonEmpty(department);
+        boolean isSemValid = ValidationUtils.isNonEmpty(semesterStr);
+        boolean isRollValid = ValidationUtils.isNonEmpty(rollNumber);
+        boolean isPasswordValid = ValidationUtils.isValidPassword(password);
+        boolean doPasswordsMatch = java.util.Objects.equals(password, confirmPassword);
 
-        if (!ValidationUtils.isNonEmpty(fullName)) {
+        if (!isNameValid) {
             tilFullName.setError(getString(R.string.error_empty_name));
-            isValid = false;
         }
-
-        if (!ValidationUtils.isValidEmail(email)) {
+        if (!isEmailValid) {
             tilEmail.setError(getString(R.string.error_invalid_email));
-            isValid = false;
         }
-
-        if (!ValidationUtils.isNonEmpty(department)) {
+        if (!isDeptValid) {
             tilDepartment.setError(getString(R.string.error_empty_department));
-            isValid = false;
         }
-
-        if (!ValidationUtils.isNonEmpty(semesterStr)) {
+        if (!isSemValid) {
             tilSemester.setError(getString(R.string.error_empty_semester));
-            isValid = false;
         }
-
-        if (!ValidationUtils.isNonEmpty(rollNumber)) {
+        if (!isRollValid) {
             tilRollNumber.setError(getString(R.string.error_empty_roll_number));
-            isValid = false;
         }
-
-        if (!ValidationUtils.isValidPassword(password)) {
+        if (!isPasswordValid) {
             tilPassword.setError(getString(R.string.error_short_password));
-            isValid = false;
         }
-
-        if (!java.util.Objects.equals(password, confirmPassword)) {
+        if (!doPasswordsMatch) {
             tilConfirmPassword.setError(getString(R.string.error_password_mismatch));
-            isValid = false;
         }
 
-        if (!isValid) return;
-
-        int semesterNum = 1;
-        if (semesterStr.contains(" ")) {
-            try {
-                semesterNum = Integer.parseInt(semesterStr.split(" ")[1]);
-            } catch (NumberFormatException ignored) {
-            }
+        if (!isNameValid || !isEmailValid || !isDeptValid || !isSemValid || !isRollValid || !isPasswordValid || !doPasswordsMatch) {
+            return;
         }
+
+        int semesterNum = parseSemesterNumber(semesterStr);
 
         User newUser = new User(null, fullName, email, department, semesterNum, rollNumber);
 
@@ -204,5 +193,16 @@ public class RegisterActivity extends AppCompatActivity {
         tilRollNumber.setError(null);
         tilPassword.setError(null);
         tilConfirmPassword.setError(null);
+    }
+
+    private int parseSemesterNumber(String semesterStr) {
+        if (semesterStr != null && semesterStr.contains(" ")) {
+            try {
+                return Integer.parseInt(semesterStr.split(" ")[1]);
+            } catch (NumberFormatException e) {
+                return 1;
+            }
+        }
+        return 1;
     }
 }

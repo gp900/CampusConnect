@@ -6,8 +6,8 @@
 |---|---|---|---|---|
 | M01-1 | Project Architecture & Docs | Milestone 1 | **DONE** | PRD, Rules, Design, AppFlow, Schema, TechSpec, Plan, Tracker created |
 | M01-2 | Design System & Resources | Milestone 1 | **DONE** | `colors.xml`, `strings.xml`, `dimens.xml`, `themes.xml` configured |
-| M02-1 | Splash Screen UI & Logic | Milestone 2 | **IN PROGRESS** | `SplashActivity.java` and `activity_splash.xml` created |
-| M02-2 | Onboarding Flow UI & ViewPager2 | Milestone 2 | **IN PROGRESS** | `OnboardingActivity.java`, `activity_onboarding.xml`, `item_onboarding.xml` created |
+| M02-1 | Splash Screen UI & Logic | Milestone 2 | **DONE** | Routing logic via Handler and SharedPrefManager |
+| M02-2 | Onboarding Flow UI & ViewPager2 | Milestone 2 | **DONE** | ViewPager2, OnboardingAdapter, dot indicators |
 | M03-1 | Login Screen UI | Milestone 3 | **TODO** | Form validation, password visibility toggle |
 | M03-2 | Register Screen UI | Milestone 3 | **TODO** | Academic details dropdowns (Dept, Semester) |
 | M03-3 | Firebase Auth Integration | Milestone 3 | **TODO** | AuthRepository and AuthViewModel |

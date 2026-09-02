@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">Campus Connect</string>
     <string name="icon">🎓</string>
-    <string name="appname">CAMPUS CONNECT</string>
     <string name="tagline">One App. Everything for Students.</string>
+
+    <!-- Onboarding -->
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+
+    <string name="onboarding_title_1">Everything on Campus</string>
+    <string name="onboarding_desc_1">Access schedules, campus news, clubs, and academic tools all in one central place.</string>
+
+    <string name="onboarding_title_2">Stay Organized</string>
+    <string name="onboarding_desc_2">Never miss a class or deadline with smart timetable tracking and attendance calculation.</string>
+
+    <string name="onboarding_title_3">Connect with Campus</string>
+    <string name="onboarding_desc_3">Share lecture notes, report lost items, explore events, and lodge complaints seamlessly.</string>
 </resources>

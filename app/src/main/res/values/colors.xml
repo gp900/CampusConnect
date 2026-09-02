@@ -2,16 +2,27 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primaryBlue">#2563EB</color>
-    <color name="secondaryPurple">#7C3AED</color>
 
+    <!-- Brand Primary & Secondary -->
+    <color name="primaryBlue">#2563EB</color>
+    <color name="primaryBlueLight">#EFF6FF</color>
+    <color name="secondaryPurple">#7C3AED</color>
+    <color name="secondaryPurpleLight">#F3E8FF</color>
+
+    <!-- Surfaces & Backgrounds -->
     <color name="background">#F8FAFC</color>
     <color name="surface">#FFFFFF</color>
+    <color name="border">#E2E8F0</color>
 
+    <!-- Text Colors -->
     <color name="text_primary">#0F172A</color>
     <color name="text_secondary">#64748B</color>
 
+    <!-- Semantic Status Colors -->
     <color name="error">#DC2626</color>
+    <color name="error_light">#FEE2E2</color>
     <color name="success">#16A34A</color>
-
+    <color name="success_light">#DCFCE7</color>
+    <color name="warning">#F59E0B</color>
+    <color name="warning_light">#FEF3C7</color>
 </resources>

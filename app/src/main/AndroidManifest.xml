@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusConnect">
         <activity
+            android:name=".OnboardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="false" />
         <activity

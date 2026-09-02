@@ -31,6 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText etFullName;
     private TextInputLayout tilEmail;
     private TextInputEditText etEmail;
+    private TextInputLayout tilCourse;
+    private AutoCompleteTextView actvCourse;
     private TextInputLayout tilDepartment;
     private AutoCompleteTextView actvDepartment;
     private TextInputLayout tilSemester;
@@ -70,6 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
         etFullName = findViewById(R.id.etFullName);
         tilEmail = findViewById(R.id.tilEmail);
         etEmail = findViewById(R.id.etEmail);
+        tilCourse = findViewById(R.id.tilCourse);
+        actvCourse = findViewById(R.id.actvCourse);
         tilDepartment = findViewById(R.id.tilDepartment);
         actvDepartment = findViewById(R.id.actvDepartment);
         tilSemester = findViewById(R.id.tilSemester);
@@ -86,8 +90,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setupDropdownAdapters() {
+        // Degree program courses (B.Tech = 8 Semesters, MBA Tech = 10 Semesters)
+        String[] courses = new String[]{"B.Tech", "MBA Tech"};
+        ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, courses);
+        actvCourse.setAdapter(courseAdapter);
+
+        // Departments including Artificial Intelligence (AI)
         String[] departments = new String[]{
                 "Computer Science",
+                "Artificial Intelligence",
                 "Information Technology",
                 "Electronics & Communication",
                 "Mechanical Engineering",
@@ -97,12 +108,27 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> deptAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, departments);
         actvDepartment.setAdapter(deptAdapter);
 
-        String[] semesters = new String[]{
-                "Semester 1", "Semester 2", "Semester 3", "Semester 4",
-                "Semester 5", "Semester 6", "Semester 7", "Semester 8"
-        };
+        // Default sem options (8 Semesters for B.Tech)
+        updateSemesterOptions(8);
+
+        actvCourse.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedCourse = (String) parent.getItemAtPosition(position);
+            if ("MBA Tech".equals(selectedCourse)) {
+                updateSemesterOptions(10);
+            } else {
+                updateSemesterOptions(8);
+            }
+        });
+    }
+
+    private void updateSemesterOptions(int maxSemesters) {
+        String[] semesters = new String[maxSemesters];
+        for (int i = 0; i < maxSemesters; i++) {
+            semesters[i] = "Semester " + (i + 1);
+        }
         ArrayAdapter<String> semAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, semesters);
         actvSemester.setAdapter(semAdapter);
+        actvSemester.setText("", false);
     }
 
     private void setupListeners() {
@@ -116,6 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         String fullName = etFullName.getText() != null ? etFullName.getText().toString().trim() : "";
         String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
+        String course = actvCourse.getText() != null ? actvCourse.getText().toString().trim() : "";
         String department = actvDepartment.getText() != null ? actvDepartment.getText().toString().trim() : "";
         String semesterStr = actvSemester.getText() != null ? actvSemester.getText().toString().trim() : "";
         String rollNumber = etRollNumber.getText() != null ? etRollNumber.getText().toString().trim() : "";
@@ -124,6 +151,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         boolean isNameValid = ValidationUtils.isNonEmpty(fullName);
         boolean isEmailValid = ValidationUtils.isValidEmail(email);
+        boolean isCourseValid = ValidationUtils.isNonEmpty(course);
         boolean isDeptValid = ValidationUtils.isNonEmpty(department);
         boolean isSemValid = ValidationUtils.isNonEmpty(semesterStr);
         boolean isRollValid = ValidationUtils.isNonEmpty(rollNumber);
@@ -135,6 +163,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if (!isEmailValid) {
             tilEmail.setError(getString(R.string.error_invalid_email));
+        }
+        if (!isCourseValid) {
+            tilCourse.setError(getString(R.string.error_empty_course));
         }
         if (!isDeptValid) {
             tilDepartment.setError(getString(R.string.error_empty_department));
@@ -152,13 +183,13 @@ public class RegisterActivity extends AppCompatActivity {
             tilConfirmPassword.setError(getString(R.string.error_password_mismatch));
         }
 
-        if (!isNameValid || !isEmailValid || !isDeptValid || !isSemValid || !isRollValid || !isPasswordValid || !doPasswordsMatch) {
+        if (!isNameValid || !isEmailValid || !isCourseValid || !isDeptValid || !isSemValid || !isRollValid || !isPasswordValid || !doPasswordsMatch) {
             return;
         }
 
         int semesterNum = parseSemesterNumber(semesterStr);
 
-        User newUser = new User(null, fullName, email, department, semesterNum, rollNumber);
+        User newUser = new User(null, fullName, email, course, department, semesterNum, rollNumber);
 
         authViewModel.register(newUser, password).observe(this, resource -> {
             if (resource == null) return;
@@ -188,6 +219,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void clearErrors() {
         tilFullName.setError(null);
         tilEmail.setError(null);
+        tilCourse.setError(null);
         tilDepartment.setError(null);
         tilSemester.setError(null);
         tilRollNumber.setError(null);

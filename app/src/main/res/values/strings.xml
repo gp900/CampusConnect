@@ -32,6 +32,7 @@
     <string name="create_account">Create Account</string>
     <string name="register_subtitle">Join Campus Connect to access all student services.</string>
     <string name="full_name_label">Full Name</string>
+    <string name="course_label">Degree Program</string>
     <string name="confirm_password_label">Confirm Password</string>
     <string name="department_label">Department</string>
     <string name="semester_label">Semester</string>
@@ -44,6 +45,7 @@
     <string name="error_invalid_email">Please enter a valid college email address.</string>
     <string name="error_short_password">Password must be at least 6 characters long.</string>
     <string name="error_empty_name">Please enter your full name.</string>
+    <string name="error_empty_course">Please select your degree program.</string>
     <string name="error_empty_department">Please select your department.</string>
     <string name="error_empty_semester">Please select your semester.</string>
     <string name="error_empty_roll_number">Please enter your roll number.</string>

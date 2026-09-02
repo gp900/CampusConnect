@@ -8,6 +8,7 @@ public class User {
     private String userId;
     private String fullName;
     private String email;
+    private String course;
     private String department;
     private int semester;
     private String rollNumber;
@@ -17,10 +18,11 @@ public class User {
         // Required empty constructor for Firestore deserialization
     }
 
-    public User(String userId, String fullName, String email, String department, int semester, String rollNumber) {
+    public User(String userId, String fullName, String email, String course, String department, int semester, String rollNumber) {
         this.userId = userId;
         this.fullName = fullName;
         this.email = email;
+        this.course = course;
         this.department = department;
         this.semester = semester;
         this.rollNumber = rollNumber;
@@ -48,6 +50,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     public String getDepartment() {

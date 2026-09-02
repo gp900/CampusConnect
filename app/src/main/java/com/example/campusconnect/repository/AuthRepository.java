@@ -30,7 +30,7 @@ public class AuthRepository {
         // Simulate network delay for authentication
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             if (email.contains("@") && password.length() >= 6) {
-                User user = new User("user_101", "Alex Student", email, "Computer Science", 5, "CS202301");
+                User user = new User("user_101", "Alex Student", email, "B.Tech", "Computer Science", 5, "CS202301");
                 result.setValue(Resource.success(user));
             } else {
                 result.setValue(Resource.error("Invalid credentials provided."));

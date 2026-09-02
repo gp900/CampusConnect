@@ -90,6 +90,32 @@
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Degree Program Dropdown -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCourse"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:hint="@string/course_label"
+            app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilEmail">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Department Dropdown -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDepartment"
@@ -104,7 +130,7 @@
             app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilEmail">
+            app:layout_constraintTop_toBottomOf="@id/tilCourse">
 
             <AutoCompleteTextView
                 android:id="@+id/actvDepartment"

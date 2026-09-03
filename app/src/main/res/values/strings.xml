@@ -18,6 +18,25 @@
     <string name="onboarding_title_3">Connect with Campus</string>
     <string name="onboarding_desc_3">Share lecture notes, report lost items, explore events, and lodge complaints seamlessly.</string>
 
+    <!-- Navigation Tabs -->
+    <string name="nav_home">Home</string>
+    <string name="nav_academics">Academics</string>
+    <string name="nav_campus">Campus</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Dashboard -->
+    <string name="notifications_title">Notifications</string>
+    <string name="next_upcoming_lecture">NEXT UPCOMING LECTURE</string>
+    <string name="attendance_label">Attendance</string>
+    <string name="pending_tasks_label">Pending Tasks</string>
+    <string name="quick_actions_header">Quick Actions</string>
+    <string name="action_mark_attendance">Mark Attendance</string>
+    <string name="action_study_notes">Study Notes</string>
+    <string name="action_lost_found">Lost &amp; Found</string>
+    <string name="action_lodge_complaint">Lodge Complaint</string>
+    <string name="featured_event_header">Featured Campus Event</string>
+    <string name="rsvp_button">RSVP</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

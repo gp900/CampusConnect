@@ -13,7 +13,7 @@
 | M03-3 | Firebase Auth Integration | Milestone 3 | **DONE** | AuthRepository, AuthViewModel, Resource state architecture |
 | M04-1 | Main Bottom Navigation | Milestone 4 | **DONE** | Material 3 BottomNavigationView with 4 tabs |
 | M04-2 | Student Dashboard (Home) | Milestone 4 | **DONE** | Next class countdown, stats cards, quick action grid, event banner |
-| M05-1 | Timetable Module | Milestone 5 | **TODO** | Day filter, class schedule cards |
+| M05-1 | Timetable Module | Milestone 5 | **DONE** | Day selection chips, lecture cards, status badges, empty state |
 | M06-1 | Attendance Tracker | Milestone 6 | **TODO** | Percentage meter, present/absent logger |
 | M07-1 | Assignment Manager | Milestone 7 | **TODO** | Priority badges, pending/completed tabs |
 | M08-1 | Notes Sharing Module | Milestone 8 | **TODO** | Subject filters, download/view notes |

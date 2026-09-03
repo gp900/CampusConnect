@@ -37,6 +37,19 @@
     <string name="featured_event_header">Featured Campus Event</string>
     <string name="rsvp_button">RSVP</string>
 
+    <!-- Timetable -->
+    <string name="day_mon">Mon</string>
+    <string name="day_tue">Tue</string>
+    <string name="day_wed">Wed</string>
+    <string name="day_thu">Thu</string>
+    <string name="day_fri">Fri</string>
+    <string name="day_sat">Sat</string>
+    <string name="no_lectures_title">No Lectures Today!</string>
+    <string name="no_lectures_desc">Enjoy your break or review notes for upcoming exams.</string>
+    <string name="status_ongoing">Ongoing</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_upcoming">Upcoming</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

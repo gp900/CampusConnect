@@ -50,6 +50,11 @@
     <string name="status_completed">Completed</string>
     <string name="status_upcoming">Upcoming</string>
 
+    <!-- Attendance -->
+    <string name="attendance_info_desc">Track your subject-wise attendance to ensure you stay in the safe zone (≥ 75%).</string>
+    <string name="btn_present">+ Present</string>
+    <string name="btn_absent">- Absent</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

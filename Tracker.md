@@ -14,7 +14,7 @@
 | M04-1 | Main Bottom Navigation | Milestone 4 | **DONE** | Material 3 BottomNavigationView with 4 tabs |
 | M04-2 | Student Dashboard (Home) | Milestone 4 | **DONE** | Next class countdown, stats cards, quick action grid, event banner |
 | M05-1 | Timetable Module | Milestone 5 | **DONE** | Day selection chips, lecture cards, status badges, empty state |
-| M06-1 | Attendance Tracker | Milestone 6 | **TODO** | Percentage meter, present/absent logger |
+| M06-1 | Attendance Tracker | Milestone 6 | **DONE** | Percentage meter, present/absent logger, safe/danger status UI |
 | M07-1 | Assignment Manager | Milestone 7 | **TODO** | Priority badges, pending/completed tabs |
 | M08-1 | Notes Sharing Module | Milestone 8 | **TODO** | Subject filters, download/view notes |
 | M09-1 | Campus Maps & Navigation | Milestone 9 | **TODO** | Zoomable floorplan image viewer for class finding |

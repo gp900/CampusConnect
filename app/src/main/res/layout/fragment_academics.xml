@@ -14,22 +14,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_medium"
-        android:text="Academics Hub"
+        android:text="@string/nav_academics"
         android:textColor="@color/text_primary"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Container for Sub-Fragment (Timetable) -->
-    <FrameLayout
-        android:id="@+id/academicsContainer"
+    <!-- Top Sub-Navigation Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutAcademics"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/primaryBlue"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/primaryBlue"
+        app:tabTextColor="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHeaderAcademics" />
+
+    <!-- Container for Sub-Fragment (ViewPager2) -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpAcademics"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHeaderAcademics" />
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutAcademics" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.os.Looper;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.campusconnect.model.AttendanceItem;
 import com.example.campusconnect.model.TimetableItem;
 import com.example.campusconnect.utils.Resource;
 
@@ -54,4 +55,52 @@ public class AcademicRepository {
 
         return result;
     }
+
+    // ==========================================
+    // ATTENDANCE MODULE LOGIC
+    // ==========================================
+
+    // Use an in-memory list for demo/local persistence purposes
+    private List<AttendanceItem> mockAttendanceList;
+
+    public LiveData<Resource<List<AttendanceItem>>> getAttendanceList() {
+        MutableLiveData<Resource<List<AttendanceItem>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockAttendanceList == null) {
+                mockAttendanceList = new ArrayList<>();
+                mockAttendanceList.add(new AttendanceItem("a1", "CS-301", "Data Structures & Algorithms", 33, 40));
+                mockAttendanceList.add(new AttendanceItem("a2", "CS-302", "Database Management Systems", 28, 30));
+                mockAttendanceList.add(new AttendanceItem("a3", "AI-303", "Machine Learning Foundations", 18, 25));
+                mockAttendanceList.add(new AttendanceItem("a4", "CS-304", "Operating Systems", 15, 22));
+                mockAttendanceList.add(new AttendanceItem("a5", "MA-201", "Applied Mathematics", 12, 20)); // 60% Danger
+            }
+            result.setValue(Resource.success(mockAttendanceList));
+        }, 300);
+
+        return result;
+    }
+
+    public void markAttendancePresent(String itemId) {
+        if (mockAttendanceList == null) return;
+        for (AttendanceItem item : mockAttendanceList) {
+            if (item.getId().equals(itemId)) {
+                item.setClassesAttended(item.getClassesAttended() + 1);
+                item.setTotalClasses(item.getTotalClasses() + 1);
+                break;
+            }
+        }
+    }
+
+    public void markAttendanceAbsent(String itemId) {
+        if (mockAttendanceList == null) return;
+        for (AttendanceItem item : mockAttendanceList) {
+            if (item.getId().equals(itemId)) {
+                item.setTotalClasses(item.getTotalClasses() + 1);
+                break;
+            }
+        }
+    }
 }
+

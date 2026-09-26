@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void observeDashboardData() {
-        dashboardViewModel.getDashboardData().observe(getViewLifecycleOwner(), resource -> {
+        dashboardViewModel.getDashboardData(requireContext()).observe(getViewLifecycleOwner(), resource -> {
             if (resource == null || resource.getData() == null) return;
 
             DashboardData data = resource.getData();

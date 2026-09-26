@@ -67,12 +67,13 @@ Contains a top `TabLayout` with `ViewPager2` supporting 4 academic modules:
 4. **Notes Sub-tab:** Subject search, category filters, PDF/image notes cards with download & rating options, "Upload Note" FAB.
 
 #### Tab 3: Campus Hub (`CampusFragment`)
-Contains a top `TabLayout` with `ViewPager2` supporting 5 campus life modules:
-1. **Events Sub-tab:** Featured events carousel, event cards with date, venue, RSVP count, "Register/RSVP" button.
-2. **Lost & Found Sub-tab:** Filter by "Lost" / "Found", item cards with photo, location, date, contact button, "Post Item" FAB.
-3. **Clubs Sub-tab:** Club directory cards (Technical, Cultural, Sports), executive team info, "Join Club" button, club event feeds.
-4. **Announcements Sub-tab:** Searchable list of official notices with urgency badges (Urgent, Notice, Exam).
-5. **Complaints Sub-tab:** Active complaints list with status badges (Submitted, In Review, Resolved), "Lodge Complaint" FAB.
+Contains a top `TabLayout` with `ViewPager2` supporting 6 campus life modules:
+1. **Navigation/Maps Sub-tab:** Interactive or zoomable campus floorplans to find classes and labs.
+2. **Events Sub-tab:** Featured events carousel, event cards with date, venue, RSVP count, "Register/RSVP" button.
+3. **Lost & Found Sub-tab:** Filter by "Lost" / "Found", item cards with photo, location, date, contact button, "Post Item" FAB.
+4. **Clubs Sub-tab:** Club directory cards (Technical, Cultural, Sports), executive team info, "Join Club" button, club event feeds.
+5. **Announcements Sub-tab:** Searchable list of official notices with urgency badges (Urgent, Notice, Exam).
+6. **Complaints Sub-tab:** Active complaints list with status badges (Submitted, In Review, Resolved), "Lodge Complaint" FAB.
 
 #### Tab 4: Profile & Settings (`ProfileFragment`)
 - **Profile Header:** Large avatar, student name, email, department, semester, roll number, "Edit Profile" button.

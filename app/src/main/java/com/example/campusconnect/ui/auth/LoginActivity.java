@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        authViewModel.login(email, password).observe(this, resource -> {
+        authViewModel.login(this, email, password).observe(this, resource -> {
             if (resource == null) return;
 
             switch (resource.getStatus()) {

@@ -191,7 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         User newUser = new User(null, fullName, email, course, department, semesterNum, rollNumber);
 
-        authViewModel.register(newUser, password).observe(this, resource -> {
+        authViewModel.register(this, newUser, password).observe(this, resource -> {
             if (resource == null) return;
 
             switch (resource.getStatus()) {

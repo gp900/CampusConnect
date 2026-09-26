@@ -1,5 +1,7 @@
 package com.example.campusconnect.viewmodel;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -15,11 +17,11 @@ public class AuthViewModel extends ViewModel {
         this.authRepository = AuthRepository.getInstance();
     }
 
-    public LiveData<Resource<User>> login(String email, String password) {
-        return authRepository.loginUser(email, password);
+    public LiveData<Resource<User>> login(Context context, String email, String password) {
+        return authRepository.loginUser(context, email, password);
     }
 
-    public LiveData<Resource<User>> register(User user, String password) {
-        return authRepository.registerUser(user, password);
+    public LiveData<Resource<User>> register(Context context, User user, String password) {
+        return authRepository.registerUser(context, user, password);
     }
 }

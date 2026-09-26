@@ -17,7 +17,8 @@
 | M06-1 | Attendance Tracker | Milestone 6 | **TODO** | Percentage meter, present/absent logger |
 | M07-1 | Assignment Manager | Milestone 7 | **TODO** | Priority badges, pending/completed tabs |
 | M08-1 | Notes Sharing Module | Milestone 8 | **TODO** | Subject filters, download/view notes |
-| M09-1 | Campus Events Module | Milestone 9 | **TODO** | Event carousel, RSVP toggle |
+| M09-1 | Campus Maps & Navigation | Milestone 9 | **TODO** | Zoomable floorplan image viewer for class finding |
+| M09-2 | Campus Events Module | Milestone 9 | **TODO** | Event carousel, RSVP toggle |
 | M10-1 | Lost & Found Module | Milestone 10 | **TODO** | Category filter (Lost/Found), posting dialog |
 | M11-1 | Clubs Directory | Milestone 11 | **TODO** | Club categories, lead contacts |
 | M11-2 | Campus Announcements | Milestone 11 | **TODO** | Urgency tags (Notice, Urgent, Exam) |

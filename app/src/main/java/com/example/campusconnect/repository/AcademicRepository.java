@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.campusconnect.model.Assignment;
 import com.example.campusconnect.model.AttendanceItem;
+import com.example.campusconnect.model.Note;
 import com.example.campusconnect.model.TimetableItem;
 import com.example.campusconnect.utils.Resource;
 
@@ -142,5 +143,36 @@ public class AcademicRepository {
             mockAssignmentList = new ArrayList<>();
         }
         mockAssignmentList.add(0, assignment);
+    }
+
+    // ==========================================
+    // NOTES MODULE LOGIC
+    // ==========================================
+
+    private List<Note> mockNotesList;
+
+    public LiveData<Resource<List<Note>>> getNotes() {
+        MutableLiveData<Resource<List<Note>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockNotesList == null) {
+                mockNotesList = new ArrayList<>();
+                mockNotesList.add(new Note("n1", "Chapter 4: Trees and Graphs", "Data Structures", "Alex Student", "PDF", 45, "2 hours ago"));
+                mockNotesList.add(new Note("n2", "Normal Forms & Relational Algebra", "Database Systems", "Sarah Connor", "PDF", 128, "Yesterday"));
+                mockNotesList.add(new Note("n3", "Midterm Cheat Sheet", "Operating Systems", "John McCarthy", "IMG", 302, "Last Week"));
+                mockNotesList.add(new Note("n4", "Gradient Descent Notes", "Machine Learning", "Linus Torvalds", "PDF", 12, "2 days ago"));
+            }
+            result.setValue(Resource.success(new ArrayList<>(mockNotesList)));
+        }, 300);
+
+        return result;
+    }
+
+    public void addNote(Note note) {
+        if (mockNotesList == null) {
+            mockNotesList = new ArrayList<>();
+        }
+        mockNotesList.add(0, note);
     }
 }

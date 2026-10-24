@@ -164,4 +164,33 @@ public class CampusRepository {
 
         return result;
     }
+
+    // ==========================================
+    // COMPLAINTS MODULE LOGIC
+    // ==========================================
+    private List<com.example.campusconnect.model.Complaint> mockComplaintsList;
+
+    public LiveData<Resource<List<com.example.campusconnect.model.Complaint>>> getComplaints() {
+        MutableLiveData<Resource<List<com.example.campusconnect.model.Complaint>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockComplaintsList == null) {
+                mockComplaintsList = new ArrayList<>();
+                mockComplaintsList.add(new com.example.campusconnect.model.Complaint("CMP1042", "Wi-Fi Not Working in Hostel Block B", "WI-FI", "The internet connection has been completely dead since yesterday evening. Restarting routers didn't help.", "IN_REVIEW", "Sep 20"));
+                mockComplaintsList.add(new com.example.campusconnect.model.Complaint("CMP1043", "Broken projector in Room 302", "INFRASTRUCTURE", "The projector HDMI port is broken, making it difficult for presentations.", "SUBMITTED", "Sep 22"));
+                mockComplaintsList.add(new com.example.campusconnect.model.Complaint("CMP1040", "Missing Grades in Portal", "ACADEMICS", "My Mid-Term grades for OS are still not reflecting on the student portal.", "RESOLVED", "Sep 15"));
+            }
+            result.setValue(Resource.success(new ArrayList<>(mockComplaintsList)));
+        }, 300);
+
+        return result;
+    }
+
+    public void addComplaint(com.example.campusconnect.model.Complaint complaint) {
+        if (mockComplaintsList == null) {
+            mockComplaintsList = new ArrayList<>();
+        }
+        mockComplaintsList.add(0, complaint);
+    }
 }

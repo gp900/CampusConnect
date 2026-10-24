@@ -131,6 +131,22 @@
     <string name="icon_empty_announcement">📢</string>
     <string name="no_announcements_title">No Announcements Found</string>
 
+    <!-- Complaints -->
+    <string name="tab_active">Active</string>
+    <string name="tab_resolved">Resolved</string>
+    <string name="lodge_complaint">Lodge Complaint</string>
+    <string name="icon_empty_complaints">🛠️</string>
+    <string name="no_complaints_title">No Complaints Filed</string>
+    <string name="title_new_complaint">Lodge a Complaint</string>
+    <string name="hint_complaint_subject">Subject (e.g. Wi-Fi Issue in Hostel)</string>
+    <string name="hint_complaint_desc">Describe the issue in detail…</string>
+    <string name="hint_complaint_category">Category</string>
+    <string name="btn_submit_complaint">Submit Complaint</string>
+    <string name="status_submitted">SUBMITTED</string>
+    <string name="status_in_review">IN REVIEW</string>
+    <string name="status_resolved">RESOLVED</string>
+    <string name="complaint_id_format">Ticket #%1$s</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

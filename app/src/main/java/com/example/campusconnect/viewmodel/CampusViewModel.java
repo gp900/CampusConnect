@@ -84,4 +84,20 @@ public class CampusViewModel extends ViewModel {
                 campusRepository.getAnnouncements()
         );
     }
+
+    // ==========================================
+    // COMPLAINTS LOGIC
+    // ==========================================
+    private final MutableLiveData<Boolean> complaintsRefreshTrigger = new MutableLiveData<>(true);
+
+    public LiveData<Resource<List<com.example.campusconnect.model.Complaint>>> getComplaints() {
+        return Transformations.switchMap(complaintsRefreshTrigger, trigger ->
+                campusRepository.getComplaints()
+        );
+    }
+
+    public void addComplaint(com.example.campusconnect.model.Complaint complaint) {
+        campusRepository.addComplaint(complaint);
+        complaintsRefreshTrigger.setValue(true);
+    }
 }

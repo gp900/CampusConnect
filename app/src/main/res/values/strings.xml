@@ -89,6 +89,7 @@
     <string name="header_featured_events">Featured Events</string>
     <string name="header_upcoming_events">Upcoming Events</string>
     <string name="rsvp_count_format">%1$d Attending</string>
+    <string name="organizer_format">By %1$s</string>
     <string name="icon_calendar" translatable="false">📅</string>
     <string name="icon_location" translatable="false">📍</string>
 
@@ -109,6 +110,26 @@
     <string name="contact_format">📞 Contact: %1$s</string>
     <string name="date_format">🗓️ Posted: %1$s</string>
     <string name="location_format">📍 %1$s</string>
+
+    <!-- Clubs -->
+    <string name="tab_technical">Technical</string>
+    <string name="tab_cultural">Cultural</string>
+    <string name="tab_sports">Sports</string>
+    <string name="btn_join_club">Join Club</string>
+    <string name="btn_leave_club">Leave Club</string>
+    <string name="members_format">%1$d Members</string>
+    <string name="lead_format">Lead: %1$s</string>
+    <string name="icon_club_desc">Club Logo</string>
+
+    <!-- Announcements -->
+    <string name="badge_urgent">URGENT</string>
+    <string name="badge_exam">EXAM</string>
+    <string name="badge_holiday">HOLIDAY</string>
+    <string name="badge_notice">NOTICE</string>
+    <string name="posted_by_format">By %1$s</string>
+    <string name="search_announcements_hint">Search announcements…</string>
+    <string name="icon_empty_announcement">📢</string>
+    <string name="no_announcements_title">No Announcements Found</string>
 
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>

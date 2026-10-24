@@ -20,8 +20,8 @@
 | M09-1 | Campus Maps & Navigation | Milestone 9 | **TODO** | Zoomable floorplan image viewer for class finding |
 | M09-2 | Campus Events Module | Milestone 9 | **TODO** | Event carousel, RSVP toggle |
 | M10-1 | Lost & Found Module | Milestone 10 | **DONE** | Item photo cards, contact button, Add Item bottom sheet |
-| M11-1 | Clubs Directory | Milestone 11 | **TODO** | Club categories, lead contacts |
-| M11-2 | Campus Announcements | Milestone 11 | **TODO** | Urgency tags (Notice, Urgent, Exam) |
+| M11-1 | Clubs Directory | Milestone 11 | **DONE** | Club categories, lead contacts, join/leave logic |
+| M11-2 | Campus Announcements | Milestone 11 | **DONE** | Urgency tags, search filtering, empty states |
 | M12-1 | Complaint System | Milestone 12 | **TODO** | Grievance submission, status tracking |
 | M13-1 | Notification Center | Milestone 13 | **TODO** | In-app notification feed |
 | M14-1 | Profile & Settings | Milestone 14 | **TODO** | Edit profile, dark mode toggle, logout |

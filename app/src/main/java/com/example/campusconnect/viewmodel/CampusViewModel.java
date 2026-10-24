@@ -57,4 +57,31 @@ public class CampusViewModel extends ViewModel {
         campusRepository.addLostFoundItem(item);
         lostFoundRefreshTrigger.setValue(true);
     }
+
+    // ==========================================
+    // CLUBS LOGIC
+    // ==========================================
+    private final MutableLiveData<Boolean> clubsRefreshTrigger = new MutableLiveData<>(true);
+
+    public LiveData<Resource<List<com.example.campusconnect.model.Club>>> getClubs() {
+        return Transformations.switchMap(clubsRefreshTrigger, trigger ->
+                campusRepository.getClubs()
+        );
+    }
+
+    public void toggleClubMembership(String clubId) {
+        campusRepository.toggleClubMembership(clubId);
+        clubsRefreshTrigger.setValue(true);
+    }
+
+    // ==========================================
+    // ANNOUNCEMENTS LOGIC
+    // ==========================================
+    private final MutableLiveData<Boolean> announcementsRefreshTrigger = new MutableLiveData<>(true);
+
+    public LiveData<Resource<List<com.example.campusconnect.model.Announcement>>> getAnnouncements() {
+        return Transformations.switchMap(announcementsRefreshTrigger, trigger ->
+                campusRepository.getAnnouncements()
+        );
+    }
 }

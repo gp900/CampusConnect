@@ -6,6 +6,7 @@ import android.os.Looper;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.campusconnect.model.Club;
 import com.example.campusconnect.model.Event;
 import com.example.campusconnect.model.LostFoundItem;
 import com.example.campusconnect.utils.Resource;
@@ -103,5 +104,64 @@ public class CampusRepository {
             mockLostFoundList = new ArrayList<>();
         }
         mockLostFoundList.add(0, item);
+    }
+
+    // ==========================================
+    // CLUBS MODULE LOGIC
+    // ==========================================
+    private List<Club> mockClubsList;
+
+    public LiveData<Resource<List<Club>>> getClubs() {
+        MutableLiveData<Resource<List<Club>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockClubsList == null) {
+                mockClubsList = new ArrayList<>();
+                mockClubsList.add(new Club("c1", "Coding Club", "TECHNICAL", "A community for developers and tech enthusiasts.", "", "Sarah Connor", "9876543210", 120, false));
+                mockClubsList.add(new Club("c2", "Robotics Society", "TECHNICAL", "Building the future of automation.", "", "John McCarthy", "9123456789", 45, true));
+                mockClubsList.add(new Club("c3", "Arts & Drama Club", "CULTURAL", "Express yourself through theater.", "", "Alice Walker", "9871234560", 85, false));
+                mockClubsList.add(new Club("c4", "Music Band", "CULTURAL", "Campus official music society.", "", "Bob Dylan", "9871112222", 30, false));
+                mockClubsList.add(new Club("c5", "Football Team", "SPORTS", "The official campus football squad.", "", "Lionel Messi", "9873334444", 25, true));
+            }
+            result.setValue(Resource.success(new ArrayList<>(mockClubsList)));
+        }, 300);
+
+        return result;
+    }
+
+    public void toggleClubMembership(String clubId) {
+        if (mockClubsList == null) return;
+        for (Club club : mockClubsList) {
+            if (java.util.Objects.equals(club.getId(), clubId)) {
+                boolean wasMember = club.isMember();
+                club.setMember(!wasMember);
+                club.setMemberCount(wasMember ? club.getMemberCount() - 1 : club.getMemberCount() + 1);
+                break;
+            }
+        }
+    }
+
+    // ==========================================
+    // ANNOUNCEMENTS MODULE LOGIC
+    // ==========================================
+    private List<com.example.campusconnect.model.Announcement> mockAnnouncementsList;
+
+    public LiveData<Resource<List<com.example.campusconnect.model.Announcement>>> getAnnouncements() {
+        MutableLiveData<Resource<List<com.example.campusconnect.model.Announcement>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockAnnouncementsList == null) {
+                mockAnnouncementsList = new ArrayList<>();
+                mockAnnouncementsList.add(new com.example.campusconnect.model.Announcement("a1", "Mid-Semester Exam Schedule", "The examination schedule for all B.Tech branches has been published on the portal.", "EXAM", "Exam Dept", "Sep 24"));
+                mockAnnouncementsList.add(new com.example.campusconnect.model.Announcement("a2", "Library Maintenance Closure", "The central library will remain closed tomorrow for server maintenance.", "NOTICE", "Library Services", "Sep 23"));
+                mockAnnouncementsList.add(new com.example.campusconnect.model.Announcement("a3", "Heavy Rainfall Holiday", "Due to severe weather warnings, all physical classes are suspended tomorrow.", "HOLIDAY", "Dean Office", "Sep 22"));
+                mockAnnouncementsList.add(new com.example.campusconnect.model.Announcement("a4", "Fee Submission Deadline", "Last date to clear semester dues is this Friday to avoid late fees.", "URGENT", "Accounts Dept", "Sep 20"));
+            }
+            result.setValue(Resource.success(new ArrayList<>(mockAnnouncementsList)));
+        }, 300);
+
+        return result;
     }
 }

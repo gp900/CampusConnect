@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_medium"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/border"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Date Square Box -->
+        <LinearLayout
+            android:id="@+id/layoutDateBox"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/indicator_active"
+            android:backgroundTint="@color/primaryBlueLight"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryBlue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="SEP" />
+
+            <TextView
+                android:id="@+id/tvDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryBlue"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="24" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvEventTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutDateBox"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Guest Lecture: AI in Healthcare" />
+
+        <TextView
+            android:id="@+id/tvEventOrganizer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvEventTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvEventTitle"
+            tools:text="By Computer Science Dept" />
+
+        <ImageView
+            android:id="@+id/ivTimeIcon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:src="@drawable/ic_calendar_event"
+            android:contentDescription="@string/icon_time_desc"
+            app:tint="@color/text_secondary"
+            app:layout_constraintStart_toStartOf="@id/tvEventTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvEventOrganizer" />
+
+        <TextView
+            android:id="@+id/tvEventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivTimeIcon"
+            app:layout_constraintStart_toEndOf="@id/ivTimeIcon"
+            app:layout_constraintTop_toTopOf="@id/ivTimeIcon"
+            tools:text="02:00 PM - 04:00 PM" />
+
+        <ImageView
+            android:id="@+id/ivLocationIcon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_location_event"
+            android:contentDescription="@string/icon_location_desc"
+            app:tint="@color/text_secondary"
+            app:layout_constraintStart_toStartOf="@id/tvEventTitle"
+            app:layout_constraintTop_toBottomOf="@id/ivTimeIcon" />
+
+        <TextView
+            android:id="@+id/tvEventVenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivLocationIcon"
+            app:layout_constraintStart_toEndOf="@id/ivLocationIcon"
+            app:layout_constraintTop_toTopOf="@id/ivLocationIcon"
+            tools:text="Main Auditorium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRsvp"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/rsvp_button"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEventVenue" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

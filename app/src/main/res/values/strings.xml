@@ -36,6 +36,11 @@
     <string name="action_lodge_complaint">Lodge Complaint</string>
     <string name="featured_event_header">Featured Campus Event</string>
     <string name="rsvp_button">RSVP</string>
+    <string name="rsvpd_button">RSVP\'d</string>
+    <string name="badge_featured">FEATURED</string>
+    <string name="icon_date_desc">Date</string>
+    <string name="icon_time_desc">Time</string>
+    <string name="icon_location_desc">Location</string>
 
     <!-- Timetable -->
     <string name="day_mon">Mon</string>
@@ -79,6 +84,14 @@
     <string name="hint_file_type">File Type</string>
     <string name="btn_upload">Upload</string>
     <string name="downloads_format">%1$d Downloads</string>
+
+    <!-- Campus Events -->
+    <string name="header_featured_events">Featured Events</string>
+    <string name="header_upcoming_events">Upcoming Events</string>
+    <string name="rsvp_count_format">%1$d Attending</string>
+    <string name="organizer_format">By %1$s</string>
+    <string name="icon_calendar" translatable="false">📅</string>
+    <string name="icon_location" translatable="false">📍</string>
 
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>

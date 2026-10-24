@@ -19,7 +19,7 @@
 | M08-1 | Notes Sharing Module | Milestone 8 | **DONE** | Subject/title filters, add note bottom sheet dialog, file type icons |
 | M09-1 | Campus Maps & Navigation | Milestone 9 | **TODO** | Zoomable floorplan image viewer for class finding |
 | M09-2 | Campus Events Module | Milestone 9 | **TODO** | Event carousel, RSVP toggle |
-| M10-1 | Lost & Found Module | Milestone 10 | **TODO** | Category filter (Lost/Found), posting dialog |
+| M10-1 | Lost & Found Module | Milestone 10 | **DONE** | Item photo cards, contact button, Add Item bottom sheet |
 | M11-1 | Clubs Directory | Milestone 11 | **TODO** | Club categories, lead contacts |
 | M11-2 | Campus Announcements | Milestone 11 | **TODO** | Urgency tags (Notice, Urgent, Exam) |
 | M12-1 | Complaint System | Milestone 12 | **TODO** | Grievance submission, status tracking |

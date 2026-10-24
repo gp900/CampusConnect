@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.campusconnect.model.Event;
+import com.example.campusconnect.model.LostFoundItem;
 import com.example.campusconnect.utils.Resource;
 
 import java.util.ArrayList;
@@ -73,5 +74,34 @@ public class CampusRepository {
                 break;
             }
         }
+    }
+
+    // ==========================================
+    // LOST & FOUND MODULE LOGIC
+    // ==========================================
+    private List<LostFoundItem> mockLostFoundList;
+
+    public LiveData<Resource<List<LostFoundItem>>> getLostFoundItems() {
+        MutableLiveData<Resource<List<LostFoundItem>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockLostFoundList == null) {
+                mockLostFoundList = new ArrayList<>();
+                mockLostFoundList.add(new LostFoundItem("lf1", "Blue Water Bottle", "Milton 1L bottle, slightly scratched", "LOST", "Library 2nd Floor", "9876543210", "Sep 20", false));
+                mockLostFoundList.add(new LostFoundItem("lf2", "Calculator Casio fx-991EX", "Found on a desk in Lab 4", "FOUND", "CS Lab 4", "Library Desk", "Sep 21", false));
+                mockLostFoundList.add(new LostFoundItem("lf3", "Black Leather Wallet", "Contains some cash and ID card", "LOST", "Cafeteria", "9123456789", "Sep 22", false));
+            }
+            result.setValue(Resource.success(new ArrayList<>(mockLostFoundList)));
+        }, 300);
+
+        return result;
+    }
+
+    public void addLostFoundItem(LostFoundItem item) {
+        if (mockLostFoundList == null) {
+            mockLostFoundList = new ArrayList<>();
+        }
+        mockLostFoundList.add(0, item);
     }
 }

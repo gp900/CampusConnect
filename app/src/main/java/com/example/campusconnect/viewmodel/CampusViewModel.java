@@ -41,4 +41,20 @@ public class CampusViewModel extends ViewModel {
             upcomingRefreshTrigger.setValue(true);
         }
     }
+
+    // ==========================================
+    // LOST & FOUND LOGIC
+    // ==========================================
+    private final MutableLiveData<Boolean> lostFoundRefreshTrigger = new MutableLiveData<>(true);
+
+    public LiveData<Resource<List<com.example.campusconnect.model.LostFoundItem>>> getLostFoundItems() {
+        return Transformations.switchMap(lostFoundRefreshTrigger, trigger ->
+                campusRepository.getLostFoundItems()
+        );
+    }
+
+    public void addLostFoundItem(com.example.campusconnect.model.LostFoundItem item) {
+        campusRepository.addLostFoundItem(item);
+        lostFoundRefreshTrigger.setValue(true);
+    }
 }

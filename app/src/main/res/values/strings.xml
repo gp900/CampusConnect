@@ -89,9 +89,26 @@
     <string name="header_featured_events">Featured Events</string>
     <string name="header_upcoming_events">Upcoming Events</string>
     <string name="rsvp_count_format">%1$d Attending</string>
-    <string name="organizer_format">By %1$s</string>
     <string name="icon_calendar" translatable="false">📅</string>
     <string name="icon_location" translatable="false">📍</string>
+
+    <!-- Lost & Found -->
+    <string name="tab_lost">Lost Items</string>
+    <string name="tab_found">Found Items</string>
+    <string name="post_item">Post Item</string>
+    <string name="badge_lost">LOST</string>
+    <string name="badge_found">FOUND</string>
+    <string name="hint_item_title">Item Name (e.g. Blue Water Bottle)</string>
+    <string name="hint_item_desc">Description / Identifying Marks</string>
+    <string name="hint_location">Last Seen / Found Location</string>
+    <string name="hint_contact">Your Contact Number</string>
+    <string name="btn_submit_post">Submit Post</string>
+    <string name="title_new_post">Post Lost/Found Item</string>
+    <string name="category_label">Category (Lost/Found)</string>
+    <string name="no_items_title">No Items Reported</string>
+    <string name="contact_format">📞 Contact: %1$s</string>
+    <string name="date_format">🗓️ Posted: %1$s</string>
+    <string name="location_format">📍 %1$s</string>
 
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>

@@ -120,5 +120,13 @@ public class HomeFragment extends Fragment {
 
         btnRsvp.setOnClickListener(v ->
                 Toast.makeText(getContext(), "RSVP Registered Successfully!", Toast.LENGTH_SHORT).show());
+                
+        View ivNotification = getView().findViewById(R.id.ivNotification);
+        if (ivNotification != null) {
+            ivNotification.setOnClickListener(v -> {
+                android.content.Intent intent = new android.content.Intent(getActivity(), NotificationsActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 }

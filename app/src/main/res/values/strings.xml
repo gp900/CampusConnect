@@ -147,6 +147,11 @@
     <string name="status_resolved">RESOLVED</string>
     <string name="complaint_id_format">Ticket #%1$s</string>
 
+    <!-- Notifications -->
+    <string name="activity_notifications_title">Notifications</string>
+    <string name="icon_empty_notifications">🔔</string>
+    <string name="no_notifications_title">You\'re all caught up!</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

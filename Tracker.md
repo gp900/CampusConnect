@@ -23,7 +23,7 @@
 | M11-1 | Clubs Directory | Milestone 11 | **DONE** | Club categories, lead contacts, join/leave logic |
 | M11-2 | Campus Announcements | Milestone 11 | **DONE** | Urgency tags, search filtering, empty states |
 | M12-1 | Complaint System Module | Milestone 12 | **DONE** | Active/Resolved filter, status badges, Lodge Complaint bottom sheet |
-| M13-1 | Notification Center | Milestone 13 | **TODO** | In-app notification feed |
+| M13-1 | Notification Center | Milestone 13 | **DONE** | In-app notification feed, dynamic icons, unread dots |
 | M14-1 | Profile & Settings | Milestone 14 | **TODO** | Edit profile, dark mode toggle, logout |
 | M15-1 | Room Offline Caching | Milestone 15 | **TODO** | Room entities, DAOs, repository sync |
 | M16-1 | Testing & QA Pass | Milestone 16 | **TODO** | Edge cases, network offline, UI validation |

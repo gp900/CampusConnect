@@ -6,6 +6,7 @@ import android.os.Looper;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.campusconnect.model.Assignment;
 import com.example.campusconnect.model.AttendanceItem;
 import com.example.campusconnect.model.TimetableItem;
 import com.example.campusconnect.utils.Resource;
@@ -60,7 +61,6 @@ public class AcademicRepository {
     // ATTENDANCE MODULE LOGIC
     // ==========================================
 
-    // Use an in-memory list for demo/local persistence purposes
     private List<AttendanceItem> mockAttendanceList;
 
     public LiveData<Resource<List<AttendanceItem>>> getAttendanceList() {
@@ -74,7 +74,7 @@ public class AcademicRepository {
                 mockAttendanceList.add(new AttendanceItem("a2", "CS-302", "Database Management Systems", 28, 30));
                 mockAttendanceList.add(new AttendanceItem("a3", "AI-303", "Machine Learning Foundations", 18, 25));
                 mockAttendanceList.add(new AttendanceItem("a4", "CS-304", "Operating Systems", 15, 22));
-                mockAttendanceList.add(new AttendanceItem("a5", "MA-201", "Applied Mathematics", 12, 20)); // 60% Danger
+                mockAttendanceList.add(new AttendanceItem("a5", "MA-201", "Applied Mathematics", 12, 20));
             }
             result.setValue(Resource.success(mockAttendanceList));
         }, 300);
@@ -102,5 +102,45 @@ public class AcademicRepository {
             }
         }
     }
-}
 
+    // ==========================================
+    // ASSIGNMENT MODULE LOGIC
+    // ==========================================
+
+    private List<Assignment> mockAssignmentList;
+
+    public LiveData<Resource<List<Assignment>>> getAssignments() {
+        MutableLiveData<Resource<List<Assignment>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (mockAssignmentList == null) {
+                mockAssignmentList = new ArrayList<>();
+                mockAssignmentList.add(new Assignment("as1", "Chapter 4 Exercise Questions", "Data Structures", "Tomorrow, 11:59 PM", "HIGH", false));
+                mockAssignmentList.add(new Assignment("as2", "SQL Query Optimization Lab", "Database Systems", "Friday, 10:00 AM", "MEDIUM", false));
+                mockAssignmentList.add(new Assignment("as3", "Read AI Research Paper", "Machine Learning", "Next Monday", "LOW", false));
+                mockAssignmentList.add(new Assignment("as4", "Setup Android Studio Environment", "Mobile Dev", "Last Week", "HIGH", true));
+            }
+            result.setValue(Resource.success(new ArrayList<>(mockAssignmentList)));
+        }, 300);
+
+        return result;
+    }
+
+    public void toggleAssignmentCompletion(String assignmentId, boolean isCompleted) {
+        if (mockAssignmentList == null) return;
+        for (Assignment item : mockAssignmentList) {
+            if (item.getId().equals(assignmentId)) {
+                item.setCompleted(isCompleted);
+                break;
+            }
+        }
+    }
+
+    public void addAssignment(Assignment assignment) {
+        if (mockAssignmentList == null) {
+            mockAssignmentList = new ArrayList<>();
+        }
+        mockAssignmentList.add(0, assignment);
+    }
+}

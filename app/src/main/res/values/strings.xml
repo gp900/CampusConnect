@@ -55,6 +55,14 @@
     <string name="btn_present">+ Present</string>
     <string name="btn_absent">- Absent</string>
 
+    <!-- Assignments -->
+    <string name="tab_pending">Pending</string>
+    <string name="tab_completed">Completed</string>
+    <string name="icon_empty_assignment">📝</string>
+    <string name="no_assignments_title">No Assignments Here</string>
+    <string name="add_task">Add Task</string>
+    <string name="due_date_format">📅 Due: %1$s</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

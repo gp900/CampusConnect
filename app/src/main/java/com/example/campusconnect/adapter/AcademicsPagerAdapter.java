@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.campusconnect.ui.academics.AssignmentsFragment;
 import com.example.campusconnect.ui.academics.AttendanceFragment;
 import com.example.campusconnect.ui.academics.TimetableFragment;
 
@@ -21,7 +22,7 @@ public class AcademicsPagerAdapter extends FragmentStateAdapter {
         switch (position) {
             case 0: return new TimetableFragment();
             case 1: return new AttendanceFragment();
-            // TODO: Case 2: AssignmentsFragment
+            case 2: return new AssignmentsFragment();
             // TODO: Case 3: NotesFragment
             default: return new TimetableFragment();
         }
@@ -29,6 +30,6 @@ public class AcademicsPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2; // Timetable, Attendance (Will be 4 eventually)
+        return 3; // Timetable, Attendance, Assignments (Will be 4 eventually)
     }
 }

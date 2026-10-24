@@ -42,7 +42,7 @@ public class AcademicsFragment extends Fragment {
             switch (position) {
                 case 0: tab.setText("Timetable"); break;
                 case 1: tab.setText("Attendance"); break;
-                // case 2: tab.setText("Assignments"); break;
+                case 2: tab.setText("Assignments"); break;
                 // case 3: tab.setText("Notes"); break;
             }
         }).attach();

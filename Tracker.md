@@ -17,7 +17,7 @@
 | M06-1 | Attendance Tracker | Milestone 6 | **DONE** | Percentage meter, present/absent logger, safe/danger status UI |
 | M07-1 | Assignment Manager | Milestone 7 | **DONE** | Priority badges, pending/completed filter tabs, Add Task BottomSheet |
 | M08-1 | Notes Sharing Module | Milestone 8 | **DONE** | Subject/title filters, add note bottom sheet dialog, file type icons |
-| M09-1 | Campus Maps & Navigation | Milestone 9 | **POSTPONED** | Zoomable floorplan image viewer for class finding |
+| M09-1 | Campus Maps & Navigation | Milestone 9 | **DONE** | Zoomable floor plan image viewer, AndroidSVG parsing, Floor search logic |
 | M09-2 | Campus Events Module | Milestone 9 | **DONE** | Event carousel, RSVP toggle, horizontal snapping layout |
 | M10-1 | Lost & Found Module | Milestone 10 | **DONE** | Item photo cards, contact button, Add Item bottom sheet |
 | M11-1 | Clubs Directory | Milestone 11 | **DONE** | Club categories, lead contacts, join/leave logic |

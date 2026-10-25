@@ -37,4 +37,9 @@ public class AttendanceViewModel extends AndroidViewModel {
         academicRepository.markAttendanceObj(item, false);
         forceRefreshTrigger.setValue(true);
     }
+
+    public void addAttendanceSubject(AttendanceItem item) {
+        academicRepository.addAttendanceSubject(item);
+        forceRefreshTrigger.setValue(true);
+    }
 }

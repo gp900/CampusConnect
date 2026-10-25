@@ -18,6 +18,10 @@ import com.example.campusconnect.R;
 import com.example.campusconnect.adapter.AttendanceAdapter;
 import com.example.campusconnect.model.AttendanceItem;
 import com.example.campusconnect.viewmodel.AttendanceViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -25,6 +29,7 @@ public class AttendanceFragment extends Fragment implements AttendanceAdapter.On
 
     private RecyclerView rvAttendance;
     private ProgressBar progressBar;
+    private ExtendedFloatingActionButton fabAddSubject;
     private AttendanceViewModel attendanceViewModel;
 
     @Nullable
@@ -40,10 +45,13 @@ public class AttendanceFragment extends Fragment implements AttendanceAdapter.On
 
         rvAttendance = view.findViewById(R.id.rvAttendance);
         progressBar = view.findViewById(R.id.progressBar);
+        fabAddSubject = view.findViewById(R.id.fabAddSubject);
 
         rvAttendance.setLayoutManager(new LinearLayoutManager(getContext()));
         
         attendanceViewModel = new ViewModelProvider(this).get(AttendanceViewModel.class);
+
+        fabAddSubject.setOnClickListener(v -> showAddSubjectDialog());
 
         observeAttendanceData();
     }
@@ -83,5 +91,48 @@ public class AttendanceFragment extends Fragment implements AttendanceAdapter.On
     public void onAbsentClicked(AttendanceItem item, int position) {
         attendanceViewModel.markAbsent(item);
         Toast.makeText(getContext(), "Marked Absent: " + item.getSubjectCode(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showAddSubjectDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        View view = getLayoutInflater().inflate(R.layout.dialog_add_attendance, null);
+        dialog.setContentView(view);
+
+        TextInputEditText etSubjectCode = view.findViewById(R.id.etSubjectCode);
+        TextInputEditText etSubjectName = view.findViewById(R.id.etSubjectName);
+        TextInputEditText etAttended = view.findViewById(R.id.etAttended);
+        TextInputEditText etTotal = view.findViewById(R.id.etTotal);
+        MaterialButton btnSaveSubject = view.findViewById(R.id.btnSaveSubject);
+
+        btnSaveSubject.setOnClickListener(v -> {
+            String code = etSubjectCode.getText() != null ? etSubjectCode.getText().toString().trim() : "";
+            String name = etSubjectName.getText() != null ? etSubjectName.getText().toString().trim() : "";
+            String attendedStr = etAttended.getText() != null ? etAttended.getText().toString().trim() : "";
+            String totalStr = etTotal.getText() != null ? etTotal.getText().toString().trim() : "";
+
+            if (code.isEmpty() || name.isEmpty() || attendedStr.isEmpty() || totalStr.isEmpty()) {
+                Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int attended = Integer.parseInt(attendedStr);
+            int total = Integer.parseInt(totalStr);
+
+            if (attended > total) {
+                Toast.makeText(getContext(), "Attended cannot be greater than total", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            AttendanceItem newItem = new AttendanceItem(
+                    "at_" + System.currentTimeMillis(),
+                    code, name, attended, total
+            );
+            
+            attendanceViewModel.addAttendanceSubject(newItem);
+            dialog.dismiss();
+            Toast.makeText(getContext(), "Subject Added Successfully!", Toast.LENGTH_SHORT).show();
+        });
+
+        dialog.show();
     }
 }

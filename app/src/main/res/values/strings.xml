@@ -59,6 +59,12 @@
     <string name="attendance_info_desc">Track your subject-wise attendance to ensure you stay in the safe zone (≥ 75%).</string>
     <string name="btn_present">+ Present</string>
     <string name="btn_absent">- Absent</string>
+    <string name="btn_add_subject">Add Subject</string>
+    <string name="title_add_subject">Add New Subject</string>
+    <string name="hint_subject_code">Subject Code (e.g. CS-301)</string>
+    <string name="hint_classes_attended">Classes Attended</string>
+    <string name="hint_total_classes">Total Classes Conducted</string>
+    <string name="btn_save_subject">Save Subject</string>
 
     <!-- Assignments -->
     <string name="tab_pending">Pending</string>

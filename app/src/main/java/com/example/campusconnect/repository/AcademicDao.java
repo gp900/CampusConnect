@@ -33,6 +33,9 @@ public interface AcademicDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAttendance(List<AttendanceItem> items);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAttendanceItem(AttendanceItem item);
+
     @Query("UPDATE attendance SET classesAttended = :attended WHERE id = :id")
     void updateAttendance(String id, int attended);
 

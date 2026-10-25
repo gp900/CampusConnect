@@ -131,10 +131,12 @@ public class AcademicRepository {
             if (isPresent) {
                 item.setClassesAttended(item.getClassesAttended() + 1);
             }
-            List<AttendanceItem> singleList = new ArrayList<>();
-            singleList.add(item);
-            academicDao.insertAttendance(singleList);
+            academicDao.insertAttendanceItem(item);
         });
+    }
+
+    public void addAttendanceSubject(AttendanceItem item) {
+        executor.execute(() -> academicDao.insertAttendanceItem(item));
     }
 
     // ==========================================

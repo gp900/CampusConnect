@@ -69,7 +69,7 @@
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:contentDescription="Download Note"
+            android:contentDescription="@string/desc_download_note"
             android:focusable="true"
             android:padding="8dp"
             android:src="@drawable/ic_download"

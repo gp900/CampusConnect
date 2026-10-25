@@ -20,7 +20,7 @@
         android:src="@drawable/ic_notification_class"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Notification Icon" />
+        android:contentDescription="@string/desc_notification_icon" />
 
     <TextView
         android:id="@+id/tvNotifTitle"

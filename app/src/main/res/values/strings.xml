@@ -84,6 +84,7 @@
     <string name="hint_file_type">File Type</string>
     <string name="btn_upload">Upload</string>
     <string name="downloads_format">%1$d Downloads</string>
+    <string name="desc_download_note">Download Note</string>
 
     <!-- Campus Events -->
     <string name="header_featured_events">Featured Events</string>
@@ -154,6 +155,7 @@
     <string name="activity_notifications_title">Notifications</string>
     <string name="icon_empty_notifications">🔔</string>
     <string name="no_notifications_title">You\'re all caught up!</string>
+    <string name="desc_notification_icon">Notification Icon</string>
 
     <!-- Profile & Settings -->
     <string name="title_profile">Student Profile</string>

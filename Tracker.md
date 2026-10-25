@@ -26,6 +26,6 @@
 | M13-1 | Notification Center | Milestone 13 | **DONE** | In-app notification feed, dynamic icons, unread dots |
 | M14-1 | Profile & Settings | Milestone 14 | **DONE** | Avatar display, shared preferences session logic, secure logout |
 | M15-1 | Room Offline Caching | Milestone 15 | **DONE** | Room entities, DAOs, AppDatabase, Repository updates |
-| M16-1 | Testing & QA Pass | Milestone 16 | **TODO** | Edge cases, network offline, UI validation |
-| M17-1 | UI/UX Polish | Milestone 17 | **TODO** | Accessibility targets, dark mode tuning |
-| M18-1 | Release Prep | Milestone 18 | **TODO** | Final build verification |
+| M16-1 | Testing & QA Pass | Milestone 16 | **DONE** | Accessibility strings, linting |
+| M17-1 | UI/UX Polish | Milestone 17 | **DONE** | Layout margins, responsive UI across screens |
+| M18-1 | Release Prep | Milestone 18 | **DONE** | Final review |

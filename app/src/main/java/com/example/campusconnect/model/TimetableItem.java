@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Model class representing a single lecture entry in the student timetable.
  */
+@Entity(tableName = "timetable")
 public class TimetableItem {
 
+    @PrimaryKey
+    @NonNull
     private String timetableId;
     private String dayOfWeek; // e.g. MONDAY, TUESDAY
     private String subjectCode; // e.g. CS-301

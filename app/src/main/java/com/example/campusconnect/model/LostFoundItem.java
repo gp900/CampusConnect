@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Data model representing a Lost or Found item.
  */
+@Entity(tableName = "lost_found")
 public class LostFoundItem {
 
+    @PrimaryKey
+    @NonNull
     private String id;
     private String title;
     private String description;

@@ -1,9 +1,9 @@
 package com.example.campusconnect.viewmodel;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
-import androidx.lifecycle.ViewModel;
 
 import com.example.campusconnect.model.Event;
 import com.example.campusconnect.repository.CampusRepository;
@@ -11,14 +11,15 @@ import com.example.campusconnect.utils.Resource;
 
 import java.util.List;
 
-public class CampusViewModel extends ViewModel {
+public class CampusViewModel extends AndroidViewModel {
 
     private final CampusRepository campusRepository;
     private final MutableLiveData<Boolean> featuredRefreshTrigger = new MutableLiveData<>(true);
     private final MutableLiveData<Boolean> upcomingRefreshTrigger = new MutableLiveData<>(true);
 
-    public CampusViewModel() {
-        this.campusRepository = CampusRepository.getInstance();
+    public CampusViewModel(android.app.Application application) {
+        super(application);
+        this.campusRepository = CampusRepository.getInstance(application);
     }
 
     public LiveData<Resource<List<Event>>> getFeaturedEvents() {

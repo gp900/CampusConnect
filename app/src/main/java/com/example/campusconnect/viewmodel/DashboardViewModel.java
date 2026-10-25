@@ -1,21 +1,26 @@
 package com.example.campusconnect.viewmodel;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.campusconnect.model.DashboardData;
 import com.example.campusconnect.model.User;
 import com.example.campusconnect.utils.Resource;
 import com.example.campusconnect.utils.SharedPrefManager;
 
-public class DashboardViewModel extends ViewModel {
+public class DashboardViewModel extends AndroidViewModel {
 
     private final MutableLiveData<Resource<DashboardData>> dashboardDataLiveData = new MutableLiveData<>();
+
+    public DashboardViewModel(Application application) {
+        super(application);
+    }
 
     public LiveData<Resource<DashboardData>> getDashboardData(Context context) {
         fetchDashboardData(context);

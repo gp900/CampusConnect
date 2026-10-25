@@ -75,13 +75,13 @@ public class AttendanceFragment extends Fragment implements AttendanceAdapter.On
 
     @Override
     public void onPresentClicked(AttendanceItem item, int position) {
-        attendanceViewModel.markPresent(item.getId());
+        attendanceViewModel.markPresent(item);
         Toast.makeText(getContext(), "Marked Present: " + item.getSubjectCode(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAbsentClicked(AttendanceItem item, int position) {
-        attendanceViewModel.markAbsent(item.getId());
+        attendanceViewModel.markAbsent(item);
         Toast.makeText(getContext(), "Marked Absent: " + item.getSubjectCode(), Toast.LENGTH_SHORT).show();
     }
 }

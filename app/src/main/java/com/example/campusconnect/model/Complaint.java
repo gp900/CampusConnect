@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Data model representing a Student Complaint or Grievance.
  */
+@Entity(tableName = "complaints")
 public class Complaint {
 
+    @PrimaryKey
+    @NonNull
     private String id;
     private String subject;
     private String category; // HOSTEL, ACADEMICS, INFRASTRUCTURE, WI-FI

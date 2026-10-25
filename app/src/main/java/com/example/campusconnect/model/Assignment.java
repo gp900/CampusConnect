@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Data model representing a student's assignment/homework.
  */
+@Entity(tableName = "assignments")
 public class Assignment {
 
+    @PrimaryKey
+    @NonNull
     private String id;
     private String title;
     private String subjectName;

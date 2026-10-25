@@ -1,9 +1,16 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Data model representing a shared study note.
  */
+@Entity(tableName = "notes")
 public class Note {
+    @PrimaryKey
+    @NonNull
     private String id;
     private String title;
     private String subjectName;

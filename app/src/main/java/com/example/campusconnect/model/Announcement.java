@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Data model representing an Official Campus Announcement.
  */
+@Entity(tableName = "announcements")
 public class Announcement {
 
+    @PrimaryKey
+    @NonNull
     private String id;
     private String title;
     private String content;

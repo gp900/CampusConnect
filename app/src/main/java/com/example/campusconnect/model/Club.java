@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Data model representing a Campus Club.
  */
+@Entity(tableName = "clubs")
 public class Club {
 
+    @PrimaryKey
+    @NonNull
     private String id;
     private String name;
     private String category; // TECHNICAL, CULTURAL, SPORTS

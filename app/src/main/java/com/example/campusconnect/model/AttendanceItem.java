@@ -1,10 +1,17 @@
 package com.example.campusconnect.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Model class representing a single subject's attendance record.
  */
+@Entity(tableName = "attendance")
 public class AttendanceItem {
 
+    @PrimaryKey
+    @NonNull
     private String id;
     private String subjectCode;
     private String subjectName;

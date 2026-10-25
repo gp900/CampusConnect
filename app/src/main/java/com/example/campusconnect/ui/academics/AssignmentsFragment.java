@@ -131,7 +131,7 @@ public class AssignmentsFragment extends Fragment implements AssignmentAdapter.O
 
     @Override
     public void onAssignmentToggled(Assignment assignment, boolean isCompleted) {
-        assignmentViewModel.toggleAssignmentCompletion(assignment.getId(), isCompleted);
+        assignmentViewModel.toggleAssignmentCompletion(assignment);
     }
 
     private void showAddAssignmentDialog() {

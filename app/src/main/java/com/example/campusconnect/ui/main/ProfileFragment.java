@@ -15,8 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.campusconnect.R;
+import com.example.campusconnect.model.User;
 import com.example.campusconnect.ui.auth.LoginActivity;
 import com.example.campusconnect.viewmodel.AuthViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class ProfileFragment extends Fragment {
 
@@ -56,7 +60,7 @@ public class ProfileFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
         
         // Setup mock clicks for non-functional settings
-        view.findViewById(R.id.btnEditProfile).setOnClickListener(v -> showToast("Edit Profile clicked"));
+        view.findViewById(R.id.btnEditProfile).setOnClickListener(v -> showEditProfileDialog());
         view.findViewById(R.id.btnMyUploads).setOnClickListener(v -> showToast("My Uploads clicked"));
         view.findViewById(R.id.btnMyComplaints).setOnClickListener(v -> showToast("My Complaints clicked"));
     }
@@ -101,5 +105,55 @@ public class ProfileFragment extends Fragment {
 
     private void showToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+    
+    private void showEditProfileDialog() {
+        if (authViewModel.getCurrentUser(requireContext()).getValue() == null || authViewModel.getCurrentUser(requireContext()).getValue().getData() == null) {
+            showToast("User data not loaded yet.");
+            return;
+        }
+        User currentUser = authViewModel.getCurrentUser(requireContext()).getValue().getData();
+
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        View view = getLayoutInflater().inflate(R.layout.dialog_edit_profile, null);
+        dialog.setContentView(view);
+
+        TextInputEditText etName = view.findViewById(R.id.etName);
+        TextInputEditText etCourse = view.findViewById(R.id.etCourse);
+        TextInputEditText etDept = view.findViewById(R.id.etDept);
+        MaterialButton btnSaveProfile = view.findViewById(R.id.btnSaveProfile);
+
+        etName.setText(currentUser.getFullName());
+        etCourse.setText(currentUser.getCourse());
+        etDept.setText(currentUser.getDepartment());
+
+        btnSaveProfile.setOnClickListener(v -> {
+            String newName = etName.getText() != null ? etName.getText().toString().trim() : "";
+            String newCourse = etCourse.getText() != null ? etCourse.getText().toString().trim() : "";
+            String newDept = etDept.getText() != null ? etDept.getText().toString().trim() : "";
+
+            if (newName.isEmpty() || newCourse.isEmpty() || newDept.isEmpty()) {
+                showToast("Please fill all fields");
+                return;
+            }
+
+            currentUser.setFullName(newName);
+            currentUser.setCourse(newCourse);
+            currentUser.setDepartment(newDept);
+
+            // In a real app we'd also sync this back to Firebase Auth/Firestore
+            com.example.campusconnect.utils.SharedPrefManager.getInstance(requireContext()).saveUserSession(currentUser);
+            
+            // Force UI refresh (dirty hack for now since we don't have an update method in AuthViewModel)
+            tvProfileName.setText(newName);
+            if (newName.length() > 0) {
+                tvAvatarLarge.setText(String.valueOf(newName.charAt(0)).toUpperCase());
+            }
+
+            dialog.dismiss();
+            showToast("Profile updated locally!");
+        });
+
+        dialog.show();
     }
 }

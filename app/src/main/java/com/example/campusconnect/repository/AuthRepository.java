@@ -89,4 +89,28 @@ public class AuthRepository {
                 })
                 .addOnFailureListener(e -> result.setValue(Resource.error("Failed to create profile: " + e.getLocalizedMessage())));
     }
+
+    public LiveData<Resource<User>> getCurrentUser(Context context) {
+        MutableLiveData<Resource<User>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        if (mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
+            fetchUserFromFirestore(context, uid, result);
+        } else {
+            // Fallback to local data if no active firebase session but locally saved
+            User localUser = SharedPrefManager.getInstance(context).getUserSession();
+            if (localUser != null && localUser.getUserId() != null) {
+                result.setValue(Resource.success(localUser));
+            } else {
+                result.setValue(Resource.error("No active user session."));
+            }
+        }
+        return result;
+    }
+
+    public void logoutUser(Context context) {
+        mAuth.signOut();
+        SharedPrefManager.getInstance(context).clearUserSession();
+    }
 }

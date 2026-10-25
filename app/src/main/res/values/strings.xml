@@ -152,6 +152,16 @@
     <string name="icon_empty_notifications">🔔</string>
     <string name="no_notifications_title">You\'re all caught up!</string>
 
+    <!-- Profile & Settings -->
+    <string name="title_profile">Student Profile</string>
+    <string name="header_settings">Account &amp; Settings</string>
+    <string name="header_preferences">Preferences</string>
+    <string name="setting_edit_profile">Edit Profile</string>
+    <string name="setting_my_uploads">My Uploaded Notes</string>
+    <string name="setting_my_complaints">My Complaints</string>
+    <string name="setting_dark_mode">Dark Mode</string>
+    <string name="btn_logout">Log Out</string>
+
     <!-- Login -->
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_subtitle">Sign in to your student account to continue.</string>

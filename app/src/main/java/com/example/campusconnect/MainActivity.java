@@ -70,4 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
     }
+
+    public void navigateToTab(int itemId) {
+        bottomNavigation.setSelectedItemId(itemId);
+    }
 }

@@ -106,17 +106,29 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupQuickActions() {
-        btnQuickAttendance.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Opening Attendance Tracker...", Toast.LENGTH_SHORT).show());
+        btnQuickAttendance.setOnClickListener(v -> {
+            if (getActivity() instanceof com.example.campusconnect.MainActivity) {
+                ((com.example.campusconnect.MainActivity) getActivity()).navigateToTab(R.id.nav_academics);
+            }
+        });
 
-        btnQuickNotes.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Opening Notes Repository...", Toast.LENGTH_SHORT).show());
+        btnQuickNotes.setOnClickListener(v -> {
+            if (getActivity() instanceof com.example.campusconnect.MainActivity) {
+                ((com.example.campusconnect.MainActivity) getActivity()).navigateToTab(R.id.nav_academics);
+            }
+        });
 
-        btnQuickLostFound.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Opening Lost & Found Bulletin...", Toast.LENGTH_SHORT).show());
+        btnQuickLostFound.setOnClickListener(v -> {
+            if (getActivity() instanceof com.example.campusconnect.MainActivity) {
+                ((com.example.campusconnect.MainActivity) getActivity()).navigateToTab(R.id.nav_campus);
+            }
+        });
 
-        btnQuickComplaint.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Opening Complaint System...", Toast.LENGTH_SHORT).show());
+        btnQuickComplaint.setOnClickListener(v -> {
+            if (getActivity() instanceof com.example.campusconnect.MainActivity) {
+                ((com.example.campusconnect.MainActivity) getActivity()).navigateToTab(R.id.nav_campus);
+            }
+        });
 
         btnRsvp.setOnClickListener(v ->
                 Toast.makeText(getContext(), "RSVP Registered Successfully!", Toast.LENGTH_SHORT).show());

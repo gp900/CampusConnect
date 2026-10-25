@@ -91,26 +91,36 @@ public class CampusNavigationFragment extends Fragment {
 
     private void loadFloorPlan(int tabIndex) {
         progressBar.setVisibility(View.VISIBLE);
-        
+
         String floorPrefix = floorIds[tabIndex];
         boolean isDarkTheme = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
         String themeSuffix = isDarkTheme ? "_dark" : "_light";
-        
-        // Example: floor_1_light
-        String drawableName = "floor_" + floorPrefix + themeSuffix;
-        int resourceId = getResources().getIdentifier(drawableName, "drawable", requireContext().getPackageName());
 
-        if (resourceId != 0) {
-            Drawable vectorMap = ContextCompat.getDrawable(requireContext(), resourceId);
-            photoViewMap.setImageDrawable(vectorMap);
-            // Reset zoom when changing floors
-            photoViewMap.setScale(1.0f);
-        } else {
-            Toast.makeText(getContext(), "Map not found for this floor", Toast.LENGTH_SHORT).show();
-            photoViewMap.setImageDrawable(null);
-        }
-        
-        progressBar.setVisibility(View.GONE);
+        String assetName = "floor_plans/floor_" + floorPrefix + themeSuffix + ".svg";
+
+        new Thread(() -> {
+            try {
+                com.caverock.androidsvg.SVG svg = com.caverock.androidsvg.SVG.getFromAsset(requireContext().getAssets(), assetName);
+                android.graphics.drawable.PictureDrawable drawable = new android.graphics.drawable.PictureDrawable(svg.renderToPicture());
+
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        photoViewMap.setLayerType(View.LAYER_TYPE_SOFTWARE, null); // Required for SVG rendering
+                        photoViewMap.setImageDrawable(drawable);
+                        photoViewMap.setScale(1.0f);
+                        progressBar.setVisibility(View.GONE);
+                    });
+                }
+            } catch (Exception e) {
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getContext(), "Map not found for this floor", Toast.LENGTH_SHORT).show();
+                        photoViewMap.setImageDrawable(null);
+                        progressBar.setVisibility(View.GONE);
+                    });
+                }
+            }
+        }).start();
     }
 
     private void searchRoom(String query) {

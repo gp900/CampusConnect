@@ -22,6 +22,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
 
     public interface OnAssignmentUpdateListener {
         void onAssignmentToggled(Assignment assignment, boolean isCompleted);
+        void onDeleteClicked(Assignment assignment);
     }
 
     public AssignmentAdapter(List<Assignment> assignments, OnAssignmentUpdateListener listener) {
@@ -41,6 +42,12 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
     public void onBindViewHolder(@NonNull AssignmentViewHolder holder, int position) {
         Assignment item = assignments.get(position);
         holder.bind(item, listener);
+        
+        if (holder.ivDelete != null) {
+            holder.ivDelete.setOnClickListener(v -> {
+                if (listener != null) listener.onDeleteClicked(item);
+            });
+        }
     }
 
     @Override
@@ -55,6 +62,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         private final TextView tvSubject;
         private final TextView tvDueDate;
         private final TextView tvPriorityBadge;
+        final View ivDelete;
 
         public AssignmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +71,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
             tvSubject = itemView.findViewById(R.id.tvAssignmentSubject);
             tvDueDate = itemView.findViewById(R.id.tvDueDate);
             tvPriorityBadge = itemView.findViewById(R.id.tvPriorityBadge);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
         }
 
         public void bind(Assignment item, OnAssignmentUpdateListener listener) {

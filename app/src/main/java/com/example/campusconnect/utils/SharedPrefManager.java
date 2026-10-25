@@ -21,6 +21,7 @@ public class SharedPrefManager {
     private static final String KEY_USER_DEPT = "user_dept";
     private static final String KEY_USER_SEM = "user_sem";
     private static final String KEY_USER_ROLL = "user_roll";
+    private static final String KEY_DARK_MODE = "dark_mode";
 
     private static SharedPrefManager instance;
     private final SharedPreferences sharedPreferences;
@@ -43,6 +44,14 @@ public class SharedPrefManager {
 
     public void setFirstRun(boolean isFirstRun) {
         sharedPreferences.edit().putBoolean(KEY_IS_FIRST_RUN, isFirstRun).apply();
+    }
+    
+    public boolean isDarkMode() {
+        return sharedPreferences.getBoolean(KEY_DARK_MODE, false);
+    }
+
+    public void setDarkMode(boolean isDark) {
+        sharedPreferences.edit().putBoolean(KEY_DARK_MODE, isDark).apply();
     }
 
     /**

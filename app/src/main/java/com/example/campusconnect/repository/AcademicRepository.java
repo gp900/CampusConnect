@@ -138,6 +138,10 @@ public class AcademicRepository {
     public void addAttendanceSubject(AttendanceItem item) {
         executor.execute(() -> academicDao.insertAttendanceItem(item));
     }
+    
+    public void deleteAttendance(String id) {
+        executor.execute(() -> academicDao.deleteAttendance(id));
+    }
 
     // ==========================================
     // ASSIGNMENT MODULE LOGIC
@@ -159,6 +163,10 @@ public class AcademicRepository {
     public void updateAssignmentCompletion(Assignment assignment) {
         executor.execute(() -> academicDao.updateAssignmentStatus(assignment.getId(), assignment.isCompleted()));
     }
+    
+    public void deleteAssignment(String id) {
+        executor.execute(() -> academicDao.deleteAssignment(id));
+    }
 
     // ==========================================
     // NOTES MODULE LOGIC
@@ -175,5 +183,9 @@ public class AcademicRepository {
 
     public void addNote(Note note) {
         executor.execute(() -> academicDao.insertNote(note));
+    }
+    
+    public void deleteNote(String id) {
+        executor.execute(() -> academicDao.deleteNote(id));
     }
 }

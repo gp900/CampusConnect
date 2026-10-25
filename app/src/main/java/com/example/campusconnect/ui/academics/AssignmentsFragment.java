@@ -133,6 +133,12 @@ public class AssignmentsFragment extends Fragment implements AssignmentAdapter.O
     public void onAssignmentToggled(Assignment assignment, boolean isCompleted) {
         assignmentViewModel.toggleAssignmentCompletion(assignment);
     }
+    
+    @Override
+    public void onDeleteClicked(Assignment assignment) {
+        assignmentViewModel.deleteAssignment(assignment.getId());
+        Toast.makeText(getContext(), "Assignment Deleted", Toast.LENGTH_SHORT).show();
+    }
 
     private void showAddAssignmentDialog() {
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());

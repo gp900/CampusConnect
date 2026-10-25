@@ -92,6 +92,12 @@ public class AttendanceFragment extends Fragment implements AttendanceAdapter.On
         attendanceViewModel.markAbsent(item);
         Toast.makeText(getContext(), "Marked Absent: " + item.getSubjectCode(), Toast.LENGTH_SHORT).show();
     }
+    
+    @Override
+    public void onDeleteClicked(AttendanceItem item) {
+        attendanceViewModel.deleteAttendance(item.getId());
+        Toast.makeText(getContext(), "Subject Deleted", Toast.LENGTH_SHORT).show();
+    }
 
     private void showAddSubjectDialog() {
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());

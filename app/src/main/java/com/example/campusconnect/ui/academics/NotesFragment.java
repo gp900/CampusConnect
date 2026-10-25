@@ -163,6 +163,12 @@ public class NotesFragment extends Fragment implements NotesAdapter.OnNoteClickL
         Toast.makeText(getContext(), "Downloading: " + note.getTitle(), Toast.LENGTH_SHORT).show();
         // Here you would normally trigger Android DownloadManager to fetch note.getFileUrl()
     }
+    
+    @Override
+    public void onDeleteClicked(Note note) {
+        notesViewModel.deleteNote(note.getId());
+        Toast.makeText(getContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
+    }
 
     private void showAddNoteDialog() {
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());

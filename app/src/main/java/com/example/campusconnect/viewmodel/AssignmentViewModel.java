@@ -37,4 +37,9 @@ public class AssignmentViewModel extends AndroidViewModel {
         academicRepository.addAssignment(assignment);
         forceRefreshTrigger.setValue(true);
     }
+    
+    public void deleteAssignment(String id) {
+        academicRepository.deleteAssignment(id);
+        forceRefreshTrigger.setValue(true);
+    }
 }

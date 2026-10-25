@@ -21,6 +21,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public interface OnNoteClickListener {
         void onDownloadClicked(Note note);
+        void onDeleteClicked(Note note);
     }
 
     public NotesAdapter(List<Note> notes, OnNoteClickListener listener) {
@@ -39,6 +40,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     @Override
     public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
         holder.bind(notes.get(position), listener);
+        if (holder.ivDelete != null) {
+            holder.ivDelete.setOnClickListener(v -> {
+                if (listener != null) listener.onDeleteClicked(notes.get(position));
+            });
+        }
     }
 
     @Override
@@ -53,6 +59,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         private final TextView tvNoteSubject;
         private final TextView tvNoteMeta;
         private final View ivDownload;
+        final View ivDelete;
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +68,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
             tvNoteSubject = itemView.findViewById(R.id.tvNoteSubject);
             tvNoteMeta = itemView.findViewById(R.id.tvNoteMeta);
             ivDownload = itemView.findViewById(R.id.ivDownload);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
         }
 
         public void bind(Note item, OnNoteClickListener listener) {

@@ -23,6 +23,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
     public interface OnAttendanceUpdateListener {
         void onPresentClicked(AttendanceItem item, int position);
         void onAbsentClicked(AttendanceItem item, int position);
+        void onDeleteClicked(AttendanceItem item);
     }
 
     public AttendanceAdapter(List<AttendanceItem> attendanceItems, OnAttendanceUpdateListener listener) {
@@ -50,6 +51,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
         holder.btnAbsent.setOnClickListener(v -> {
             if (listener != null) listener.onAbsentClicked(item, position);
         });
+        
+        if (holder.ivDelete != null) {
+            holder.ivDelete.setOnClickListener(v -> {
+                if (listener != null) listener.onDeleteClicked(item);
+            });
+        }
     }
 
     @Override
@@ -67,6 +74,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
         private final LinearProgressIndicator progressAttendance;
         final View btnPresent;
         final View btnAbsent;
+        final View ivDelete;
 
         public AttendanceViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +86,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
             progressAttendance = itemView.findViewById(R.id.progressAttendance);
             btnPresent = itemView.findViewById(R.id.btnPresent);
             btnAbsent = itemView.findViewById(R.id.btnAbsent);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
         }
 
         public void bind(AttendanceItem item) {

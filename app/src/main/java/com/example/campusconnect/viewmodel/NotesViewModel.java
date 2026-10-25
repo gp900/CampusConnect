@@ -31,4 +31,9 @@ public class NotesViewModel extends AndroidViewModel {
         academicRepository.addNote(note);
         forceRefreshTrigger.setValue(true);
     }
+    
+    public void deleteNote(String id) {
+        academicRepository.deleteNote(id);
+        forceRefreshTrigger.setValue(true);
+    }
 }

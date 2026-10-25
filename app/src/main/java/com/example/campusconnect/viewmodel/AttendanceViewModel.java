@@ -42,4 +42,9 @@ public class AttendanceViewModel extends AndroidViewModel {
         academicRepository.addAttendanceSubject(item);
         forceRefreshTrigger.setValue(true);
     }
+    
+    public void deleteAttendance(String id) {
+        academicRepository.deleteAttendance(id);
+        forceRefreshTrigger.setValue(true);
+    }
 }

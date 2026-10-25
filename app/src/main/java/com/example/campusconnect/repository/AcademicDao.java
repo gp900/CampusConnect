@@ -39,6 +39,9 @@ public interface AcademicDao {
     @Query("UPDATE attendance SET classesAttended = :attended WHERE id = :id")
     void updateAttendance(String id, int attended);
 
+    @Query("DELETE FROM attendance WHERE id = :id")
+    void deleteAttendance(String id);
+
     @Query("DELETE FROM attendance")
     void clearAttendance();
 
@@ -55,6 +58,9 @@ public interface AcademicDao {
     @Query("UPDATE assignments SET isCompleted = :isCompleted WHERE id = :id")
     void updateAssignmentStatus(String id, boolean isCompleted);
 
+    @Query("DELETE FROM assignments WHERE id = :id")
+    void deleteAssignment(String id);
+
     @Query("DELETE FROM assignments")
     void clearAssignments();
 
@@ -67,6 +73,9 @@ public interface AcademicDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNotes(List<Note> notes);
+
+    @Query("DELETE FROM notes WHERE id = :id")
+    void deleteNote(String id);
 
     @Query("DELETE FROM notes")
     void clearNotes();

@@ -58,11 +58,29 @@ public class ProfileFragment extends Fragment {
         tvAvatarLarge = view.findViewById(R.id.tvAvatarLarge);
         
         btnLogout = view.findViewById(R.id.btnLogout);
+
+        com.google.android.material.materialswitch.MaterialSwitch switchDarkMode = view.findViewById(R.id.switchDarkMode);
+        boolean isDark = com.example.campusconnect.utils.SharedPrefManager.getInstance(requireContext()).isDarkMode();
+        switchDarkMode.setChecked(isDark);
         
-        // Setup mock clicks for non-functional settings
+        switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            com.example.campusconnect.utils.SharedPrefManager.getInstance(requireContext()).setDarkMode(isChecked);
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                    isChecked ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+            );
+        });
+        
         view.findViewById(R.id.btnEditProfile).setOnClickListener(v -> showEditProfileDialog());
-        view.findViewById(R.id.btnMyUploads).setOnClickListener(v -> showToast("My Uploads clicked"));
-        view.findViewById(R.id.btnMyComplaints).setOnClickListener(v -> showToast("My Complaints clicked"));
+        view.findViewById(R.id.btnMyUploads).setOnClickListener(v -> {
+            if (getActivity() instanceof com.example.campusconnect.MainActivity) {
+                ((com.example.campusconnect.MainActivity) getActivity()).navigateToTab(R.id.nav_academics);
+            }
+        });
+        view.findViewById(R.id.btnMyComplaints).setOnClickListener(v -> {
+            if (getActivity() instanceof com.example.campusconnect.MainActivity) {
+                ((com.example.campusconnect.MainActivity) getActivity()).navigateToTab(R.id.nav_campus);
+            }
+        });
     }
 
     private void setupListeners() {

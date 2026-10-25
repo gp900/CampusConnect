@@ -120,11 +120,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
             android:text="@string/btn_present"
             android:textColor="@color/success"
             app:backgroundTint="@color/success_light"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
             app:layout_constraintStart_toEndOf="@id/btnAbsent"
+            app:layout_constraintTop_toTopOf="@id/btnAbsent" />
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="Delete"
+            app:layout_constraintBottom_toBottomOf="@id/btnAbsent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/btnAbsent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

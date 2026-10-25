@@ -10,8 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -43,6 +46,10 @@ public class NotesFragment extends Fragment implements NotesAdapter.OnNoteClickL
     private NotesViewModel notesViewModel;
     private NotesAdapter notesAdapter;
     private List<Note> allNotes = new ArrayList<>();
+    
+    private ActivityResultLauncher<String> filePickerLauncher;
+    private TextView tvSelectedFileName;
+    private boolean isFileSelected = false;
 
     @Nullable
     @Override
@@ -59,6 +66,18 @@ public class NotesFragment extends Fragment implements NotesAdapter.OnNoteClickL
         notesViewModel = new ViewModelProvider(this).get(NotesViewModel.class);
 
         rvNotes.setLayoutManager(new LinearLayoutManager(getContext()));
+        
+        filePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            if (uri != null) {
+                isFileSelected = true;
+                if (tvSelectedFileName != null) {
+                    // Simple mock for actual file name extraction
+                    String path = uri.getPath();
+                    String filename = path != null ? path.substring(path.lastIndexOf('/') + 1) : "document.pdf";
+                    tvSelectedFileName.setText(filename);
+                }
+            }
+        });
 
         setupListeners();
         observeNotes();
@@ -154,14 +173,16 @@ public class NotesFragment extends Fragment implements NotesAdapter.OnNoteClickL
         TextInputEditText etSubject = view.findViewById(R.id.etSubject);
         AutoCompleteTextView actvFileType = view.findViewById(R.id.actvFileType);
         LinearLayout layoutFilePicker = view.findViewById(R.id.layoutFilePicker);
+        tvSelectedFileName = view.findViewById(R.id.tvSelectedFileName);
         MaterialButton btnUpload = view.findViewById(R.id.btnUpload);
+        
+        isFileSelected = false; // reset for new dialog
 
         String[] fileTypes = {"PDF", "IMG"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, fileTypes);
         actvFileType.setAdapter(adapter);
 
-        layoutFilePicker.setOnClickListener(v -> 
-                Toast.makeText(getContext(), "Opening File Picker...", Toast.LENGTH_SHORT).show());
+        layoutFilePicker.setOnClickListener(v -> filePickerLauncher.launch("*/*"));
 
         btnUpload.setOnClickListener(v -> {
             String title = etTitle.getText() != null ? etTitle.getText().toString().trim() : "";
@@ -170,6 +191,11 @@ public class NotesFragment extends Fragment implements NotesAdapter.OnNoteClickL
 
             if (title.isEmpty() || subject.isEmpty()) {
                 Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            if (!isFileSelected) {
+                Toast.makeText(getContext(), "Please select a file to upload", Toast.LENGTH_SHORT).show();
                 return;
             }
 

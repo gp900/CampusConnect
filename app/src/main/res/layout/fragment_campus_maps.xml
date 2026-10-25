@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.campus.CampusNavigationFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMaps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_medium">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSearch"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                    app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                    app:startIconDrawable="@android:drawable/ic_menu_search">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSearchRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_room_hint"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- Floor Selection Tabs -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutFloors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/primaryBlue"
+            app:tabSelectedTextColor="@color/primaryBlue"
+            app:tabTextColor="@color/text_secondary">
+            <com.google.android.material.tabs.TabItem android:text="LG" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="G" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="1st" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="2nd" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="3rd" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="4th" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="5th" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="6th" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="7th" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem android:text="8th" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoViewMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/surface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

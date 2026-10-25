@@ -121,6 +121,9 @@
     <string name="lead_format">Lead: %1$s</string>
     <string name="icon_club_desc">Club Logo</string>
 
+    <!-- Maps -->
+    <string name="search_room_hint">Search class (e.g. 102)</string>
+
     <!-- Announcements -->
     <string name="badge_urgent">URGENT</string>
     <string name="badge_exam">EXAM</string>

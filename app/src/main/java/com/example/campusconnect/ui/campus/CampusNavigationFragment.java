@@ -1,19 +1,19 @@
 package com.example.campusconnect.ui.campus;
 
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.campusconnect.R;
@@ -21,15 +21,20 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.InputStream;
+
 public class CampusNavigationFragment extends Fragment {
 
     private TabLayout tabLayoutFloors;
     private PhotoView photoViewMap;
     private ProgressBar progressBar;
     private TextInputEditText etSearchRoom;
+    private AutoCompleteTextView actvRoomPrefix;
 
     // Floor prefixes (LG, G, 1-8) matching the files in assets
     private final String[] floorIds = {"lg", "g", "1", "2", "3", "4", "5", "6", "7", "8"};
+    private String currentSearchQuery = "";
+    private String currentPrefix = "CR";
 
     @Nullable
     @Override
@@ -53,6 +58,12 @@ public class CampusNavigationFragment extends Fragment {
         photoViewMap = view.findViewById(R.id.photoViewMap);
         progressBar = view.findViewById(R.id.progressBar);
         etSearchRoom = view.findViewById(R.id.etSearchRoom);
+        actvRoomPrefix = view.findViewById(R.id.actvRoomPrefix);
+
+        String[] prefixes = {"CR", "CL", "TR", "Faculty Area", "Lab"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, prefixes);
+        actvRoomPrefix.setAdapter(adapter);
+        actvRoomPrefix.setText("CR", false);
         
         // Default select Ground Floor tab
         TabLayout.Tab tab = tabLayoutFloors.getTabAt(1);
@@ -73,20 +84,33 @@ public class CampusNavigationFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {}
         });
 
+        actvRoomPrefix.setOnItemClickListener((parent, view, position, id) -> {
+            currentPrefix = (String) parent.getItemAtPosition(position);
+            triggerSearch();
+        });
+
         etSearchRoom.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 3) {
-                    searchRoom(s.toString().trim());
-                }
+                currentSearchQuery = s.toString().trim();
+                triggerSearch();
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
         });
+    }
+    
+    private void triggerSearch() {
+        if (currentSearchQuery.length() >= 3) {
+            searchRoom(currentSearchQuery);
+        } else {
+            // Reset to unhighlighted if search is cleared
+            loadFloorPlan(tabLayoutFloors.getSelectedTabPosition());
+        }
     }
 
     private void loadFloorPlan(int tabIndex) {
@@ -97,15 +121,39 @@ public class CampusNavigationFragment extends Fragment {
         String themeSuffix = isDarkTheme ? "_dark" : "_light";
 
         String assetName = "floor_plans/floor_" + floorPrefix + themeSuffix + ".svg";
+        
+        String highlightTarget = "";
+        if (currentSearchQuery.length() >= 3) {
+            highlightTarget = currentPrefix + " " + currentSearchQuery;
+        }
+
+        final String targetToHighlight = highlightTarget;
 
         new Thread(() -> {
             try {
-                com.caverock.androidsvg.SVG svg = com.caverock.androidsvg.SVG.getFromAsset(requireContext().getAssets(), assetName);
+                // Read SVG as String
+                InputStream is = requireContext().getAssets().open(assetName);
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String svgString = new String(buffer, "UTF-8");
+
+                // Inject Highlight Color if target is set
+                if (!targetToHighlight.isEmpty()) {
+                    String highlightColor = isDarkTheme ? "#60A5FA" : "#3B82F6"; // Primary Blue
+                    // Regex looks for a <rect> immediately followed by a <text> block containing our target
+                    String regex = "(<rect [^>]*?)(/?>\\s*<text[^>]*id=\"[^\"]*(?i)" + targetToHighlight + "[^\"]*\")";
+                    String replacement = "$1 fill=\"" + highlightColor + "\"$2";
+                    svgString = svgString.replaceAll(regex, replacement);
+                }
+
+                com.caverock.androidsvg.SVG svg = com.caverock.androidsvg.SVG.getFromString(svgString);
                 android.graphics.drawable.PictureDrawable drawable = new android.graphics.drawable.PictureDrawable(svg.renderToPicture());
 
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
-                        photoViewMap.setLayerType(View.LAYER_TYPE_SOFTWARE, null); // Required for SVG rendering
+                        photoViewMap.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                         photoViewMap.setImageDrawable(drawable);
                         photoViewMap.setScale(1.0f);
                         progressBar.setVisibility(View.GONE);
@@ -124,12 +172,9 @@ public class CampusNavigationFragment extends Fragment {
     }
 
     private void searchRoom(String query) {
-        // Simple heuristic: If it starts with '1', it's 1st floor (index 2). If '2', 2nd floor (index 3), etc.
-        // Assuming room formats like "102", "305", "G14"
-        
         int targetTabIndex = -1;
         String firstChar = query.substring(0, 1).toUpperCase();
-        
+
         if (firstChar.equals("G")) targetTabIndex = 1;
         else if (query.toUpperCase().startsWith("LG")) targetTabIndex = 0;
         else {
@@ -142,13 +187,16 @@ public class CampusNavigationFragment extends Fragment {
                 // Not a valid room format
             }
         }
-        
+
         if (targetTabIndex != -1 && targetTabIndex != tabLayoutFloors.getSelectedTabPosition()) {
             TabLayout.Tab tab = tabLayoutFloors.getTabAt(targetTabIndex);
             if (tab != null) {
-                tab.select(); // This triggers loadFloorPlan automatically
-                Toast.makeText(getContext(), "Switched to floor containing room " + query, Toast.LENGTH_SHORT).show();
+                tab.select(); // This triggers loadFloorPlan automatically which will do the highlighting
+                Toast.makeText(getContext(), "Switched to floor " + targetTabIndex, Toast.LENGTH_SHORT).show();
             }
+        } else {
+            // Already on the right floor, just reload to trigger highlighting
+            loadFloorPlan(tabLayoutFloors.getSelectedTabPosition());
         }
     }
 }

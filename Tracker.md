@@ -17,14 +17,14 @@
 | M06-1 | Attendance Tracker | Milestone 6 | **DONE** | Percentage meter, present/absent logger, safe/danger status UI |
 | M07-1 | Assignment Manager | Milestone 7 | **DONE** | Priority badges, pending/completed filter tabs, Add Task BottomSheet |
 | M08-1 | Notes Sharing Module | Milestone 8 | **DONE** | Subject/title filters, add note bottom sheet dialog, file type icons |
-| M09-1 | Campus Maps & Navigation | Milestone 9 | **TODO** | Zoomable floorplan image viewer for class finding |
-| M09-2 | Campus Events Module | Milestone 9 | **TODO** | Event carousel, RSVP toggle |
+| M09-1 | Campus Maps & Navigation | Milestone 9 | **POSTPONED** | Zoomable floorplan image viewer for class finding |
+| M09-2 | Campus Events Module | Milestone 9 | **DONE** | Event carousel, RSVP toggle, horizontal snapping layout |
 | M10-1 | Lost & Found Module | Milestone 10 | **DONE** | Item photo cards, contact button, Add Item bottom sheet |
 | M11-1 | Clubs Directory | Milestone 11 | **DONE** | Club categories, lead contacts, join/leave logic |
 | M11-2 | Campus Announcements | Milestone 11 | **DONE** | Urgency tags, search filtering, empty states |
 | M12-1 | Complaint System Module | Milestone 12 | **DONE** | Active/Resolved filter, status badges, Lodge Complaint bottom sheet |
 | M13-1 | Notification Center | Milestone 13 | **DONE** | In-app notification feed, dynamic icons, unread dots |
-| M14-1 | Profile & Settings | Milestone 14 | **TODO** | Edit profile, dark mode toggle, logout |
+| M14-1 | Profile & Settings | Milestone 14 | **DONE** | Avatar display, shared preferences session logic, secure logout |
 | M15-1 | Room Offline Caching | Milestone 15 | **TODO** | Room entities, DAOs, repository sync |
 | M16-1 | Testing & QA Pass | Milestone 16 | **TODO** | Edge cases, network offline, UI validation |
 | M17-1 | UI/UX Polish | Milestone 17 | **TODO** | Accessibility targets, dark mode tuning |

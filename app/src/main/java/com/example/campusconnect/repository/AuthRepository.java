@@ -67,6 +67,17 @@ public class AuthRepository {
         return result;
     }
 
+    public LiveData<Resource<String>> resetPassword(String email) {
+        MutableLiveData<Resource<String>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+
+        mAuth.sendPasswordResetEmail(email)
+                .addOnSuccessListener(aVoid -> result.setValue(Resource.success("Reset link sent to your email.")))
+                .addOnFailureListener(e -> result.setValue(Resource.error(e.getLocalizedMessage())));
+
+        return result;
+    }
+
     private void fetchUserFromFirestore(Context context, String uid, MutableLiveData<Resource<User>> result) {
         db.collection("users").document(uid).get()
                 .addOnSuccessListener(documentSnapshot -> {

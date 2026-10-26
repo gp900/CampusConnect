@@ -18,6 +18,7 @@ import com.example.campusconnect.MainActivity;
 import com.example.campusconnect.R;
 import com.example.campusconnect.utils.ValidationUtils;
 import com.example.campusconnect.viewmodel.AuthViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private MaterialButton btnLogin;
     private ProgressBar progressBar;
     private TextView tvRegister;
+    private TextView tvForgotPassword;
     private AuthViewModel authViewModel;
 
     @Override
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         progressBar = findViewById(R.id.progressBar);
         tvRegister = findViewById(R.id.tvRegister);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
     }
 
     private void setupListeners() {
@@ -67,6 +70,48 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+        
+        tvForgotPassword.setOnClickListener(v -> showForgotPasswordDialog());
+    }
+
+    private void showForgotPasswordDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_forgot_password, null);
+        dialog.setContentView(view);
+
+        TextInputEditText etForgotEmail = view.findViewById(R.id.etForgotEmail);
+        MaterialButton btnSendResetLink = view.findViewById(R.id.btnSendResetLink);
+
+        btnSendResetLink.setOnClickListener(v -> {
+            String email = etForgotEmail.getText() != null ? etForgotEmail.getText().toString().trim() : "";
+            
+            if (!ValidationUtils.isValidEmail(email)) {
+                Toast.makeText(this, getString(R.string.error_invalid_email), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            authViewModel.resetPassword(email).observe(this, resource -> {
+                if (resource == null) return;
+                
+                switch (resource.getStatus()) {
+                    case LOADING:
+                        btnSendResetLink.setEnabled(false);
+                        btnSendResetLink.setText("Sending...");
+                        break;
+                    case SUCCESS:
+                        dialog.dismiss();
+                        Toast.makeText(LoginActivity.this, resource.getData(), Toast.LENGTH_LONG).show();
+                        break;
+                    case ERROR:
+                        btnSendResetLink.setEnabled(true);
+                        btnSendResetLink.setText(getString(R.string.btn_send_reset_link));
+                        Toast.makeText(LoginActivity.this, resource.getMessage(), Toast.LENGTH_LONG).show();
+                        break;
+                }
+            });
+        });
+
+        dialog.show();
     }
 
     private void attemptLogin() {

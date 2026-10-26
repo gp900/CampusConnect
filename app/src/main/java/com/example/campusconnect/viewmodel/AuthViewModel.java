@@ -24,6 +24,10 @@ public class AuthViewModel extends ViewModel {
     public LiveData<Resource<User>> register(Context context, User user, String password) {
         return authRepository.registerUser(context, user, password);
     }
+    
+    public LiveData<Resource<String>> resetPassword(String email) {
+        return authRepository.resetPassword(email);
+    }
 
     public LiveData<Resource<User>> getCurrentUser(Context context) {
         return authRepository.getCurrentUser(context);

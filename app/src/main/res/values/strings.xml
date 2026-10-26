@@ -179,6 +179,8 @@
     <string name="email_label">College Email</string>
     <string name="password_label">Password</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_desc">Enter your registered college email address and we will send you a password reset link.</string>
+    <string name="btn_send_reset_link">Send Reset Link</string>
     <string name="login_button">Sign In</string>
     <string name="no_account_prompt">Don\'t have an account? </string>
     <string name="register_now">Register</string>
